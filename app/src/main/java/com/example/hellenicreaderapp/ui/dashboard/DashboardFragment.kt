@@ -41,11 +41,52 @@ class DashboardFragment : Fragment() {
         val hymn3: Button = binding.hoHy3
         val hymn4: Button = binding.hoHy4
         val hymn5: Button = binding.hoHy5
+        val hymn6: Button = binding.hoHy6
 
         hymn1.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy1")
                 putString("title", "Εἲς Διώνυσον")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
+
+        hymn2.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy2")
+                putString("title", "To Demeter")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
+
+        hymn3.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy3")
+                putString("title", "To Apollo")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
+
+        hymn4.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy4")
+                putString("title", "To Hermes")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
+
+        hymn5.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy5")
+                putString("title", "To Aphrodite")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
+
+        hymn6.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy6")
+                putString("title", "Εἲς Ἀφροδίτην")
             }
             findNavController().navigate(R.id.readerFragment, bundle)
         }
