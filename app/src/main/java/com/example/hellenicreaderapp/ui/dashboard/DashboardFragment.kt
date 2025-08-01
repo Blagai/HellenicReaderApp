@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -39,6 +41,14 @@ class DashboardFragment : Fragment() {
         val hymn3: Button = binding.hoHy3
         val hymn4: Button = binding.hoHy4
         val hymn5: Button = binding.hoHy5
+
+        hymn1.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("textId", "hohy1")
+                putString("title", "Εἲς Διώνυσον")
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
 
         return root
     }

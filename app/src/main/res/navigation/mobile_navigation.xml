@@ -22,4 +22,13 @@
         android:name="com.example.hellenicreaderapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.example.hellenicreaderapp.ui.Reader.ReaderFragment"
+        android:label="Reader">
+        <argument
+            android:name="textId"
+            app:argType="string" />
+    </fragment>
 </navigation>
