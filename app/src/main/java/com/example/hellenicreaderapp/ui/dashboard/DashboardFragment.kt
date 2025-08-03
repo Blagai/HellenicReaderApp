@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -31,10 +32,12 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val textLastRead = binding.lastRead
+        dashboardViewModel.lastReadText.observe(viewLifecycleOwner) {
+            textLastRead.text = it
         }
+
+        dashboardViewModel.refreshLastRead()
 
         val hymn1: Button = binding.hoHy1
         val hymn2: Button = binding.hoHy2
@@ -46,49 +49,55 @@ class DashboardFragment : Fragment() {
         hymn1.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy1")
-                putString("title", "Εἲς Διώνυσον")
+                putString("title", context?.getString(R.string.hymn1_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         hymn2.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy2")
-                putString("title", "To Demeter")
+                putString("title", context?.getString(R.string.hymn2_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         hymn3.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy3")
-                putString("title", "To Apollo")
+                putString("title", context?.getString(R.string.hymn3_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         hymn4.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy4")
-                putString("title", "To Hermes")
+                putString("title", context?.getString(R.string.hymn4_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         hymn5.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy5")
-                putString("title", "To Aphrodite")
+                putString("title", context?.getString(R.string.hymn5_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         hymn6.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("textId", "hohy6")
-                putString("title", "Εἲς Ἀφροδίτην")
+                putString("title", context?.getString(R.string.hymn6_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
+            dashboardViewModel.refreshLastRead()
         }
 
         return root

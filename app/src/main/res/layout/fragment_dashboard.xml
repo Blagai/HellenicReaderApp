@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="305dp"
@@ -35,7 +21,7 @@
         android:id="@+id/lastSeenText"
         android:layout_width="137dp"
         android:layout_height="42dp"
-        android:text="You were at:"
+        android:text="@string/userAtTitle"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/imageButton"
@@ -80,7 +66,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 1" />
+                android:text="@string/hymn1_title" />
 
             <Button
                 android:id="@+id/hoHy2"
@@ -88,7 +74,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 2" />
+                android:text="@string/hymn2_title" />
 
             <Button
                 android:id="@+id/hoHy3"
@@ -96,7 +82,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 3" />
+                android:text="@string/hymn3_title" />
 
             <Button
                 android:id="@+id/hoHy4"
@@ -104,7 +90,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 4" />
+                android:text="@string/hymn4_title" />
 
             <Button
                 android:id="@+id/hoHy5"
@@ -112,7 +98,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 5" />
+                android:text="@string/hymn5_title" />
 
             <Button
                 android:id="@+id/hoHy6"
@@ -120,7 +106,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Hymn 6" />
+                android:text="@string/hymn6_title" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -129,7 +115,7 @@
         android:id="@+id/homericHymnsTitle"
         android:layout_width="169dp"
         android:layout_height="30dp"
-        android:text="Homeric Hymns:"
+        android:text="@string/homeric_hymns"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
