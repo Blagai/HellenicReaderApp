@@ -33,6 +33,13 @@ class HomeFragment : Fragment() {
             readTextsNum.text = it
         }
 
+        val startContinueButton = binding.homeStartButton
+        homeViewModel.startContinueButton.observe(viewLifecycleOwner) {
+            startContinueButton.text = it
+        }
+
+        // TODO Code to either start the default reading order or continue from the last read text
+
         return root
     }
 
