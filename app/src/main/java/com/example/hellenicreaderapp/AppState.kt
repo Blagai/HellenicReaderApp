@@ -13,6 +13,8 @@ object AppState {
 
     var readingOrder = orderOfReading.BASICHYMNS // Hardcoded test case
 
+    var lastReadInOrder: String? = null // Base for separating last read in text choice and last read in homeContinue
+
     enum class orderOfReading {
         BASICHYMNS
     }
