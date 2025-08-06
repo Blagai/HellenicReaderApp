@@ -34,4 +34,5 @@
     <string name="readTextsTitle">Texts read:</string>
 
     <string name="homeStartButton">Start reading</string>
+    <string name="homeContinueButton">Continue</string>
 </resources>

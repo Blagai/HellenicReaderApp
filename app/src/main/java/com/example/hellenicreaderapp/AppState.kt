@@ -9,19 +9,24 @@ object AppState {
 
     var readTextsNum: Int = 0
 
+    // var defaultAllTextReadingOrder = listOf() - to populate when I have more texts
     var basicHymnReadingOrder = listOf("hohy1", "hohy2", "hohy3", "hohy4", "hohy5", "hohy6")
 
-    var readingOrder = orderOfReading.BASICHYMNS // Hardcoded test case
+    var readingOrder = orderOfReading.NULL // Hardcoded test case
 
     var lastReadInOrder: String? = null // Base for separating last read in text choice and last read in homeContinue
 
     enum class orderOfReading {
-        BASICHYMNS
+        DEFAULTREAD,
+        BASICHYMNS,
+        NULL // Needed so that the function below would work
     }
 
     fun getCurrentOrder(): List<String> {
         return when (readingOrder) {
+            orderOfReading.DEFAULTREAD -> basicHymnReadingOrder // For testing - change to defaultAllTextReadingOrder once it exists
             orderOfReading.BASICHYMNS -> basicHymnReadingOrder
+            orderOfReading.NULL -> emptyList()
         }
     }
 }
