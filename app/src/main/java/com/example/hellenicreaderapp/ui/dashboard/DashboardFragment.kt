@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentDashboardBinding
 
@@ -47,6 +48,7 @@ class DashboardFragment : Fragment() {
         val hymn6: Button = binding.hoHy6
 
         hymn1.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy1")
                 putString("title", context?.getString(R.string.hymn1_greek))
@@ -56,6 +58,7 @@ class DashboardFragment : Fragment() {
         }
 
         hymn2.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy2")
                 putString("title", context?.getString(R.string.hymn2_greek))
@@ -65,6 +68,7 @@ class DashboardFragment : Fragment() {
         }
 
         hymn3.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy3")
                 putString("title", context?.getString(R.string.hymn3_greek))
@@ -74,6 +78,7 @@ class DashboardFragment : Fragment() {
         }
 
         hymn4.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy4")
                 putString("title", context?.getString(R.string.hymn4_greek))
@@ -83,6 +88,7 @@ class DashboardFragment : Fragment() {
         }
 
         hymn5.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy5")
                 putString("title", context?.getString(R.string.hymn5_greek))
@@ -92,6 +98,7 @@ class DashboardFragment : Fragment() {
         }
 
         hymn6.setOnClickListener {
+            AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy6")
                 putString("title", context?.getString(R.string.hymn6_greek))
