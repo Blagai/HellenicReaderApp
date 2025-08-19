@@ -25,7 +25,9 @@ class SelectModeDialogFragment : DialogFragment() {
         val button2 = view.findViewById<Button>(R.id.buttonOrder2)
 
         button1.setOnClickListener {
-            AppState.readingOrder = AppState.orderOfReading.DEFAULTREAD
+            AppState.readingOrder = AppState.orderOfReading.DEFAULTREAD // Remove once ReaderFragment is updated accordingly
+            AppState.homeCurrentReadOrder = AppState.orderOfReading.DEFAULTREAD
+            AppState.isReadingThroughHome = true
             // Navigate to reader fragment with the first item of the selected order
             val firstId = AppState.getCurrentOrder().first()
             val firstTitle = "Εἲς Διώνυσον"
