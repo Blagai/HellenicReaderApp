@@ -32,10 +32,13 @@ class ReaderFragment : Fragment() {
 
         val textId = arguments?.getString("textId") ?: return
         val title = arguments?.getString("title") ?: ""
-        val content = loadTextFromAssets(textId)
-        binding.readerTextView.text = content
-        binding.readerTitle.text = title
-
+        val loadedContent = loadTextFromAssets(textId)
+        val preparsedContent = loadedContent.lines()
+        val parsedTitle = preparsedContent.firstOrNull() ?: ""
+        val parsedText = if(preparsedContent.size > 1) {
+            preparsedContent.drop(1).joinToString("\n") } else { "" }
+        binding.readerTextView.text = parsedText // To change when I figure out the logic
+        binding.readerTitle.text = parsedTitle // To change when I figure out the logic
         AppState.currentRead = textId
         AppState.currentReadTitle = title
         AppState.readNoBack = true
@@ -55,19 +58,19 @@ class ReaderFragment : Fragment() {
             val currentId = AppState.currentRead
             if (!isTranslated) {
                 val translatedId = "${currentId}_eng"
-                val translatedContent = loadTextFromAssets(translatedId)
-                binding.readerTextView.text = translatedContent
+                val loadedTranslatedContent = loadTextFromAssets(translatedId)
+                val preparsedTranslatedContent = loadedTranslatedContent.lines()
+                val parsedTranslatedTitle = preparsedTranslatedContent.firstOrNull() ?: ""
+                val parsedTranslatedText = if(preparsedTranslatedContent.size > 1) {
+                    preparsedTranslatedContent.drop(1).joinToString("\n") } else { "" }
+                binding.readerTextView.text = parsedTranslatedText
+                binding.readerTitle.text = parsedTranslatedTitle
 
-                val translatedTitle = when (translatedId) {
-                    "hohy1_eng" -> "To Dionysus"
-
-                    else -> binding.readerTitle.text.toString()
-                }
-                binding.readerTitle.text = translatedTitle
                 isTranslated = true
 
                 translateButton.setText(R.string.AllOriginal)
             } else {
+                // There has to be a better way to do this
                 val originalContent = currentId?.let { it1 -> loadTextFromAssets(it1) }
                 binding.readerTextView.text = originalContent
                 binding.readerTitle.text = AppState.currentReadTitle
