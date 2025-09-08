@@ -15,8 +15,19 @@
 
 # Base Functionality:
 
-* Save certain parts of AppState even when user reopens the app
-* Add more texts
+
 * Word translation functionality (kill me)
 * Translate the texts myself so that I would own the copyright and be allowed to make it public domain (kill me x2)
 * Word/Whole text saving functionality
+* Save certain parts of AppState even when user reopens the app - leave for later because complicated
+
+# Texts to add:
+
+* All Homeric Hymns
+* Illiad and Oddysey
+* Aristotle works
+* Epictetus works
+* Euripides works
+* The Histories
+* Hippocrates works
+* Diogenes works
