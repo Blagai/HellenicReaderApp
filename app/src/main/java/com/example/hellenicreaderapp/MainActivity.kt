@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var ignoreTabSelection = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +46,11 @@ class MainActivity : AppCompatActivity() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                if (ignoreTabSelection) return
+
                 when (tab.position) {
                     0 -> navController.navigate(R.id.navigation_home)
-                    1 -> {
+                    1 -> { // Maybe make this so it always takes to text selection and never to the reader?
                         if (AppState.readNoBack && AppState.currentRead != null) {
                             val bundle = Bundle().apply {
                                 putString("textId", AppState.currentRead)
@@ -66,7 +69,26 @@ class MainActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_home -> selectTabSafely(tabLayout, 0)
+                R.id.navigation_dashboard -> selectTabSafely(tabLayout, 1)
+                R.id.readerFragment -> selectTabSafely(tabLayout, 1)
+                R.id.navigation_notifications -> selectTabSafely(tabLayout, 2)
+            }
+        }
     }
+
+    private fun selectTabSafely(tabLayout: TabLayout, index: Int) {
+        val tab = tabLayout.getTabAt(index) ?: return
+        if (!tab.isSelected) {
+            ignoreTabSelection = true
+            tabLayout.selectTab(tab)
+            ignoreTabSelection = false
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
