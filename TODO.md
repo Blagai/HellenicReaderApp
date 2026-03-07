@@ -10,6 +10,7 @@
 
 * Fix next button not working when selecting texts manually
 * Continue button disappears when reopening the app
+* Translate all puts the first sentence in the title
 
 
 
