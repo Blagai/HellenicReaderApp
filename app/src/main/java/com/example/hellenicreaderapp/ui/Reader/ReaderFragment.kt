@@ -1,5 +1,6 @@
 package com.example.hellenicreaderapp.ui.Reader
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
@@ -20,6 +21,7 @@ import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
 
 class ReaderFragment : Fragment() {
     private var _binding: FragmentReaderBinding? = null
@@ -173,9 +175,9 @@ class ReaderFragment : Fragment() {
             val clickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     Toast.makeText(requireContext(), "Clicked: $word", Toast.LENGTH_SHORT).show()
-                    // Code to show the word translation popup with the selected word
-                    // Logic should probably be a dictionary using probability based on the rest of the text
-                    // with some manual overrides
+
+                    val dialog = TranslationDialogFragment.newInstance(word)
+                    dialog.show(parentFragmentManager, "TranslationDialog")
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
