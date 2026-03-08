@@ -166,16 +166,15 @@ class ReaderFragment : Fragment() {
 
     private fun makeWordsClickable(textView: TextView, text: String) {
         val spannable = SpannableString(text)
-        val words = text.split(" ")
-        var start = 0
+        val wordRegex = Regex("\\S+")
 
-        for (word in words) {
-            val end = start + word.length
+        wordRegex.findAll(text).forEach { matchResult ->
+            val word = matchResult.value
+            val start = matchResult.range.first
+            val end = matchResult.range.last + 1
 
             val clickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    Toast.makeText(requireContext(), "Clicked: $word", Toast.LENGTH_SHORT).show()
-
                     val dialog = TranslationDialogFragment.newInstance(word)
                     dialog.show(parentFragmentManager, "TranslationDialog")
                 }
@@ -187,7 +186,6 @@ class ReaderFragment : Fragment() {
                 }
             }
             spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            start = end + 1
         }
         textView.text = spannable
         textView.movementMethod = LinkMovementMethod.getInstance()
