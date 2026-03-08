@@ -3,23 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/translationconstraint"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="24dp">
-
 
     <TextView
         android:id="@+id/originalGreekWord"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:textAlignment="viewStart"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordDetails"
+        tools:text="Greek" />
+
+    <TextView
+        android:id="@+id/wordDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:text="f. v. sin. 1st."
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wordTranslation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:text="Lit. test; Meaning test."
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originalGreekWord" />
+
+    <Button
+        android:id="@+id/saveWordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/originalGreekWord"
+        app:layout_constraintStart_toStartOf="@+id/originalGreekWord"
+        app:layout_constraintTop_toTopOf="@+id/wordDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
