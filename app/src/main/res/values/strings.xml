@@ -15,6 +15,13 @@
     <string name="hymn5_title">Hymn 5 \n To Aphrodite</string>
     <string name="hymn6_title">Hymn 6 \n To Aphrodite</string>
 
+    <string name="hymn1_title_1line">To Dionysus</string>
+    <string name="hymn2_title_1line">o Demeter</string>
+    <string name="hymn3_title_1line">To Apollo</string>
+    <string name="hymn4_title_1line">To Hermes</string>
+    <string name="hymn5_title_1line">To Aphrodite</string>
+    <string name="hymn6_title_1line">To Aphrodite</string>
+
     <string name="hymn1_greek">Εἲς Διώνυσον</string>
     <string name="hymn2_greek">Εἲς Δημήτραν</string>
     <string name="hymn3_greek">Εἲς Ἀπόλλωνα</string>
