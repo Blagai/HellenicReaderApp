@@ -5,16 +5,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.Tab
-import androidx.appcompat.widget.Toolbar
+import com.example.hellenicreaderapp.utility.DataParser
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +23,15 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Load translations from assets on startup
+        try {
+            assets.open("Data/lit_translations.csv").use { inputStream ->
+                DataParser.parseCsvToLines(inputStream)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         val actionBar = supportActionBar
 
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
                 when (tab.position) {
                     0 -> navController.navigate(R.id.navigation_home)
-                    1 -> { // Maybe make this so it always takes to text selection and never to the reader?
+                    1 -> { 
                         if (AppState.readNoBack && AppState.currentRead != null) {
                             val bundle = Bundle().apply {
                                 putString("textId", AppState.currentRead)

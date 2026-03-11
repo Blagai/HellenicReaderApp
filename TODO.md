@@ -15,8 +15,8 @@
 
 # Base Functionality:
 
-* Dictionary
-* Word translation functionality
+* Populate dictionary
+* Finish word translation functionality
 * Translate the texts myself so that I would own the copyright and be allowed to make it public domain
 * Word/Whole text saving functionality
 * Save certain parts of AppState even when the user reopens the app
