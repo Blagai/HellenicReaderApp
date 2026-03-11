@@ -40,16 +40,15 @@ class ReaderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val textId = ("OriginalTexts/" + arguments?.getString("textId"))
-        val title = arguments?.getString("title") ?: ""
         val loadedContent = loadTextFromAssets(textId)
-        val preparsedContent = loadedContent.lines()
+        val preparsedContent = loadedContent.trim().lines()
         val parsedTitle = preparsedContent.firstOrNull() ?: ""
         val parsedText = if(preparsedContent.size > 1) {
             preparsedContent.drop(1).joinToString("\n") } else { "" }
         makeWordsClickable(binding.readerTextView, parsedText)
-        binding.readerTitle.text = parsedTitle // To change when I figure out the logic
+        binding.readerTitle.text = parsedTitle
         AppState.currentRead = arguments?.getString("textId")
-        AppState.currentReadTitle = title
+        AppState.currentReadTitle = parsedTitle
         AppState.readNoBack = true
         if (!AppState.isReadingThroughHome) {
             AppState.lastRead = textId
@@ -68,7 +67,7 @@ class ReaderFragment : Fragment() {
             if (!isTranslated) {
                 val translatedId = "${currentId}_eng"
                 val loadedTranslatedContent = loadTextFromAssets(translatedId)
-                val preparsedTranslatedContent = loadedTranslatedContent.lines()
+                val preparsedTranslatedContent = loadedTranslatedContent.trim().lines()
                 val translatedTitle = when (currentId) {
                     "hohy1" -> getString(R.string.hymn1_title_1line)
                     "hohy2" -> getString(R.string.hymn2_title_1line)
@@ -78,19 +77,22 @@ class ReaderFragment : Fragment() {
                     "hohy6" -> getString(R.string.hymn6_title_1line)
                     else -> ""
                 }
-                val TranslatedTitle = translatedTitle
                 val parsedTranslatedText = if(preparsedTranslatedContent.size > 1) {
-                    preparsedTranslatedContent.joinToString("\n") } else { "" }
+                    preparsedTranslatedContent.drop(1).joinToString("\n") } else { "" }
                 binding.readerTextView.text = parsedTranslatedText
-                binding.readerTitle.text = TranslatedTitle
+                binding.readerTitle.text = translatedTitle
 
                 isTranslated = true
 
                 translateButton.setText(R.string.AllOriginal)
             } else {
-                // There has to be a better way to do this
-                val originalContent = currentId?.let { it1 -> loadTextFromAssets(it1) }
-                binding.readerTextView.text = originalContent
+                val originalTextId = "OriginalTexts/$currentId"
+                val loadedContent = loadTextFromAssets(originalTextId)
+                val preparsedContent = loadedContent.trim().lines()
+                val parsedText = if(preparsedContent.size > 1) {
+                    preparsedContent.drop(1).joinToString("\n") } else { "" }
+                
+                makeWordsClickable(binding.readerTextView, parsedText)
                 binding.readerTitle.text = AppState.currentReadTitle
                 isTranslated = false
 
