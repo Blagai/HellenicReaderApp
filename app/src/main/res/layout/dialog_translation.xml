@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/translationconstraint"
-    android:layout_width="wrap_content"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:padding="24dp">
 
@@ -12,42 +12,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="2dp"
         android:textAlignment="viewStart"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordDetails"
+        app:layout_constraintTop_toBottomOf="@+id/saveWordButton"
         tools:text="Greek" />
 
     <TextView
         android:id="@+id/wordDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginEnd="2dp"
         android:text="f. v. sin. 1st."
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/saveWordButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/wordTranslation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="24dp"
-        android:text="Lit. test; Meaning test."
+        android:text="Lit. test"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/originalGreekWord" />
+
+    <TextView
+        android:id="@+id/wordTranslationMeaning"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Meaning test"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/wordTranslation"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordTranslation" />
 
     <Button
         android:id="@+id/saveWordButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginTop="2dp"
         android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/originalGreekWord"
         app:layout_constraintStart_toStartOf="@+id/originalGreekWord"
         app:layout_constraintTop_toTopOf="@+id/wordDetails" />
 

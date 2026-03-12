@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.utility.LitTranslationMap.mappedLitTranslations
+import com.example.hellenicreaderapp.utility.MeaningTranslationMap.mappedMeaningTranslations
 
 class TranslationDialogFragment : DialogFragment() {
     private var word: String? = null
@@ -31,12 +32,20 @@ class TranslationDialogFragment : DialogFragment() {
         val textView = view.findViewById<TextView>(R.id.originalGreekWord)
         textView.text = word
 
-        val translationText = view.findViewById<TextView>(R.id.wordTranslation)
-        val translations = mappedLitTranslations[word]
-        if (translations != null) {
-            translationText.text = "Lit. " + translations.joinToString(", ")
+        val litTranslationText = view.findViewById<TextView>(R.id.wordTranslation)
+        val litTranslations = mappedLitTranslations[word]
+        if (litTranslations != null) {
+            litTranslationText.text = "Lit. " + litTranslations.joinToString(", ")
         } else {
-            translationText.text = "No translation found"
+            litTranslationText.text = "No translation found"
+        }
+
+        val meaningTranslationText = view.findViewById<TextView>(R.id.wordTranslationMeaning)
+        val meaningTranslations = mappedMeaningTranslations[word]
+        if (meaningTranslations != null) {
+            meaningTranslationText.text = "Meaning " + meaningTranslations.joinToString(", ")
+        } else {
+            meaningTranslationText.text = "No translation found"
         }
     }
 
