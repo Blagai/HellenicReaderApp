@@ -44,7 +44,7 @@ class TranslationDialogFragment : DialogFragment() {
         val meaningTranslationText = view.findViewById<TextView>(R.id.wordTranslationMeaning)
         val meaningTranslations = mappedMeaningTranslations[word]
         if (meaningTranslations != null) {
-            meaningTranslationText.text = "Meaning " + meaningTranslations.joinToString(", ")
+            meaningTranslationText.text = "Meaning " + meaningTranslations.joinToString(", ") + "here"
         } else {
             meaningTranslationText.text = "No translation found"
         }
@@ -56,6 +56,8 @@ class TranslationDialogFragment : DialogFragment() {
         } else {
             grammarDetailsText.text = "No details found"
         }
+
+        //TODO save button functionality
     }
 
     companion object {
