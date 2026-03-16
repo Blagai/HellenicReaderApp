@@ -3,11 +3,16 @@ package com.example.hellenicreaderapp.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hellenicreaderapp.AppState
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Hello world!"
+    private val _readTextsNum = MutableLiveData<String>().apply {
+        value = AppState.readTextsNum.toString()
     }
-    val text: LiveData<String> = _text
+    val readTextsNum: LiveData<String> = _readTextsNum
+
+    fun refreshReadTextsNum() {
+        _readTextsNum.value = AppState.readTextsNum.toString()
+    }
 }
