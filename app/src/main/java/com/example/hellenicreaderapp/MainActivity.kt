@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        AppState.readNoBack = false
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -45,7 +47,18 @@ class MainActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> navController.navigate(R.id.navigation_home)
-                    1 -> navController.navigate(R.id.navigation_dashboard)
+                    1 -> {
+                        if (AppState.readNoBack && AppState.currentRead != null) {
+                            val bundle = Bundle().apply {
+                                putString("textId", AppState.currentRead)
+                                putString("title", AppState.currentReadTitle)
+                            }
+                            navController.navigate(R.id.readerFragment, bundle)
+                        } else {
+                            navController.navigate(R.id.navigation_dashboard)
+                        }
+                    }
+
                     2 -> navController.navigate(R.id.navigation_notifications)
                 }
             }
