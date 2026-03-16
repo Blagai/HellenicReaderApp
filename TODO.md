@@ -15,8 +15,8 @@
 
 # Base Functionality:
 
-* Make continue button work (need to save homeCurrentReadOrder and homecurrentInOrder separately so that independent reading wouldn't ruin regular)
 * Fix the titles to be tied to a file in an object somewhere and load with it
+* Save certain parts of AppState even when user reopens the app
 * Add more texts
 * Word translation functionality (kill me)
 * Translate the texts myself so that I would own the copyright and be allowed to make it public domain (kill me x2)
