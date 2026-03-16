@@ -5,16 +5,18 @@ object AppState {
     var currentReadTitle: String? = null
     var readNoBack: Boolean = false
 
-    var lastRead: String? = null
+    var lastRead: String? = null // for Dashboard continue button
 
     var readTextsNum: Int = 0
 
-    // var defaultAllTextReadingOrder = listOf() - to populate when I have more texts
+    // var defaultAllTextReadingOrder = listOf() - to populate when I have more texts and figure out what I think is a good order
     var basicHymnReadingOrder = listOf("hohy1", "hohy2", "hohy3", "hohy4", "hohy5", "hohy6")
 
     var readingOrder = orderOfReading.NULL // Hardcoded test case
 
-    var lastReadInOrder: String? = null // Base for separating last read in text choice and last read in homeContinue
+    var homeCurrentReadOrder = orderOfReading.NULL
+    var homeCurrentInOrder: String? = null
+    var isReadingThroughHome = false
 
     enum class orderOfReading {
         DEFAULTREAD,

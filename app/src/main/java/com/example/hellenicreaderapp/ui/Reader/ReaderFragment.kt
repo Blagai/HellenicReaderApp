@@ -41,6 +41,10 @@ class ReaderFragment : Fragment() {
         AppState.readNoBack = true
         AppState.lastRead = textId
 
+        if (AppState.isReadingThroughHome) {
+            AppState.homeCurrentInOrder = textId
+        }
+
         val backButton = binding.readerBack
         val translateButton = binding.readerTranslate
         val continueButton = binding.continueButton
@@ -109,7 +113,9 @@ class ReaderFragment : Fragment() {
             }
         }
 
-        // Should make the system back and the back button actually take the user to the text picker
+        // Should make the system back take to last text
+        // and the back button take the user to the text picker
+        // System back should not switch user between tabs ever
         backButton.setOnClickListener {
             AppState.readNoBack = false
             requireActivity().onBackPressedDispatcher.onBackPressed()
