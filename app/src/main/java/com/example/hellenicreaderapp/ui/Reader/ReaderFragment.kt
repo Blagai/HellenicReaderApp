@@ -39,7 +39,7 @@ class ReaderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textId = arguments?.getString("textId") ?: return
+        val textId = ("OriginalTexts/" + arguments?.getString("textId"))
         val title = arguments?.getString("title") ?: ""
         val loadedContent = loadTextFromAssets(textId)
         val preparsedContent = loadedContent.lines()
