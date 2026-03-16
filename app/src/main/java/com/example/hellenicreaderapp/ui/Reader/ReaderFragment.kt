@@ -167,25 +167,30 @@ class ReaderFragment : Fragment() {
     private fun makeWordsClickable(textView: TextView, text: String) {
         val spannable = SpannableString(text)
         val wordRegex = Regex("\\S+")
+        val punctuationToTrim = ".,;·!?:()[]{}«»\"—".toCharArray()
 
         wordRegex.findAll(text).forEach { matchResult ->
-            val word = matchResult.value
-            val start = matchResult.range.first
-            val end = matchResult.range.last + 1
+            val fullWord = matchResult.value
+            val word = fullWord.trim { it in punctuationToTrim }
+            
+            if (word.isNotEmpty()) {
+                val start = matchResult.range.first + fullWord.indexOf(word)
+                val end = start + word.length
 
-            val clickableSpan = object : ClickableSpan() {
-                override fun onClick(widget: View) {
-                    val dialog = TranslationDialogFragment.newInstance(word)
-                    dialog.show(parentFragmentManager, "TranslationDialog")
-                }
+                val clickableSpan = object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        val dialog = TranslationDialogFragment.newInstance(word)
+                        dialog.show(parentFragmentManager, "TranslationDialog")
+                    }
 
-                override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
-                    ds.isUnderlineText = false
-                    ds.color = requireContext().getColor(R.color.white)
+                    override fun updateDrawState(ds: TextPaint) {
+                        super.updateDrawState(ds)
+                        ds.isUnderlineText = false
+                        ds.color = requireContext().getColor(R.color.white)
+                    }
                 }
+                spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
-            spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
         textView.text = spannable
         textView.movementMethod = LinkMovementMethod.getInstance()
