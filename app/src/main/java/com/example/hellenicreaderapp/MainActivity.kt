@@ -3,7 +3,6 @@ package com.example.hellenicreaderapp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -27,11 +26,20 @@ class MainActivity : AppCompatActivity() {
         // Load translations from assets on startup
         try {
             assets.open("Data/lit_translations.csv").use { inputStream ->
-                DataParser.parseCsvToLines(inputStream)
+                DataParser.loadLitTranslations(inputStream)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+        try {
+            assets.open("Data/meaning_translations.csv").use { inputStream ->
+                DataParser.loadMeaningTranslations(inputStream)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
 
         val actionBar = supportActionBar
 
@@ -42,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
         val tabLayout = findViewById<TabLayout>(R.id.top_tab_layout)
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val tabStrip = tabLayout.getChildAt(0) as ViewGroup
 
         tabLayout.addTab(tabLayout.newTab().setText("Home"))
         tabLayout.addTab(tabLayout.newTab().setText("Choose text"))

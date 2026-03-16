@@ -5,8 +5,15 @@ import java.io.InputStream
 object DataParser {
 
     var litTranslations: List<String> = emptyList()
+    var meaningTranslations: List<String> = emptyList()
+
+
     fun loadLitTranslations(inputStream: InputStream) {
         litTranslations = parseCsvToLines(inputStream)
+    }
+
+    fun loadMeaningTranslations(inputStream: InputStream) {
+        meaningTranslations = parseCsvToLines(inputStream)
     }
 
     fun parseCsvToLines(inputStream: InputStream): List<String> {
