@@ -15,4 +15,14 @@ class HomeViewModel : ViewModel() {
     fun refreshReadTextsNum() {
         _readTextsNum.value = AppState.readTextsNum.toString()
     }
+
+    private val _startContinueButton = MutableLiveData<String>().apply {
+        if (AppState.readTextsNum == 0) {
+            value = "Start reading"
+        } else {
+            value = "Continue"
+        }
+    }
+
+    val startContinueButton: LiveData<String> = _startContinueButton
 }

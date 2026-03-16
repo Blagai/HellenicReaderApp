@@ -101,6 +101,8 @@ class ReaderFragment : Fragment() {
                 }
 
                 findNavController().navigate(R.id.readerFragment, bundle)
+
+                AppState.readTextsNum++
             } else {
                 // Show error
             }

@@ -7,7 +7,7 @@ object AppState {
 
     var lastRead: String? = null
 
-    var readTextsNum: Int? = 0
+    var readTextsNum: Int = 0
 
     var basicHymnReadingOrder = listOf("hohy1", "hohy2", "hohy3", "hohy4", "hohy5", "hohy6")
 
