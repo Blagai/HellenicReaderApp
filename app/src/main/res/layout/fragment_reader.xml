@@ -8,18 +8,17 @@
 
     <TextView
         android:id="@+id/readerTitle"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:padding="16dp"
-        android:text="Title"
-        android:textAlignment="center"
+        android:text="replaceWithTitle"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/readerBack"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -34,26 +33,72 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.882">
 
-        <TextView
-            android:id="@+id/readerTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textIsSelectable="true"
-            android:textSize="18sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/readerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saveButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/continueButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nextButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/readerBack"
-        android:layout_width="88dp"
-        android:layout_height="49dp"
-        android:text="Back"
+        android:id="@+id/readerTranslate"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="@string/translateButton"
+        android:textSize = "12sp"
         app:layout_constraintBottom_toBottomOf="@+id/readerTitle"
         app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="@+id/readerTitle"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.450" />
+
+    <ImageButton
+        android:id="@+id/readerBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/backButon"
+        android:padding="8dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toBottomOf="@+id/readerTitle"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/readerTitle"
+        app:layout_constraintVertical_bias="0.55" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

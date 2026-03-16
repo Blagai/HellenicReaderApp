@@ -16,10 +16,10 @@
     <string name="hymn6_title">Hymn 6 \n To Aphrodite</string>
 
     <string name="hymn1_greek">Εἲς Διώνυσον</string>
-    <string name="hymn2_greek">To Demeter</string>
-    <string name="hymn3_greek">To Apollo</string>
-    <string name="hymn4_greek">To Hermes</string>
-    <string name="hymn5_greek">To Aphrodite</string>
+    <string name="hymn2_greek">Εἲς Δημήτραν</string>
+    <string name="hymn3_greek">Εἲς Ἀπόλλωνα</string>
+    <string name="hymn4_greek">Εἲς Ἑρμῆν</string>
+    <string name="hymn5_greek">Εἲς Ἀφροδίτην</string>
     <string name="hymn6_greek">Εἲς Αφροδίτην</string>
 
     <string name="saveButton">Save Text</string>
