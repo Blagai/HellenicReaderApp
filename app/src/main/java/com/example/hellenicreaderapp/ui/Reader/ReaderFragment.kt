@@ -1,10 +1,17 @@
 package com.example.hellenicreaderapp.ui.Reader
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,6 +19,7 @@ import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 
 
 class ReaderFragment : Fragment() {
@@ -37,7 +45,7 @@ class ReaderFragment : Fragment() {
         val parsedTitle = preparsedContent.firstOrNull() ?: ""
         val parsedText = if(preparsedContent.size > 1) {
             preparsedContent.drop(1).joinToString("\n") } else { "" }
-        binding.readerTextView.text = parsedText // To change when I figure out the logic
+        makeWordsClickable(binding.readerTextView, parsedText)
         binding.readerTitle.text = parsedTitle // To change when I figure out the logic
         AppState.currentRead = textId
         AppState.currentReadTitle = title
@@ -153,6 +161,38 @@ class ReaderFragment : Fragment() {
             e.printStackTrace()
             "Failed to load: ${e.message}"
         }
+    }
+
+    private fun makeWordsClickable(textView: TextView, text: String) {
+        val spannable = SpannableString(text)
+        val words = text.split(" ")
+        var start = 0
+
+        for (word in words) {
+            val end = start + word.length
+
+            val clickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    Toast.makeText(requireContext(), "Clicked: $word", Toast.LENGTH_SHORT).show()
+                    // Code to show the word translation popup with the selected word
+                    // Logic should probably be a dictionary using probability based on the rest of the text
+                    // with some manual overrides
+
+
+                }
+
+                override fun updateDrawState(ds: TextPaint) {
+                    super.updateDrawState(ds)
+                    ds.isUnderlineText = false
+                    ds.color = requireContext().getColor(R.color.white)
+                }
+            }
+            spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            start = end + 1
+        }
+        textView.text = spannable
+        textView.movementMethod = LinkMovementMethod.getInstance()
+        textView.highlightColor = Color.TRANSPARENT
     }
 
 

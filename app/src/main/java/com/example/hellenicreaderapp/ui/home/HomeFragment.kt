@@ -37,13 +37,11 @@ class HomeFragment : Fragment() {
             readTextsNum.text = it
         }
 
-
         val startButton = binding.homeStartButton
         startButton.setOnClickListener {
             SelectModeDialogFragment().show(parentFragmentManager, "SelectMode")
         }
 
-        // TODO #2 add a separate continue button because I think it's better UX
         val continueButton = binding.homeContinueButton
         continueButton.visibility = if (AppState.homeCurrentReadOrder != AppState.OrderOfReading.NULL) View.VISIBLE else View.GONE
         // The button functionality will also need AppState to save which was the last text
