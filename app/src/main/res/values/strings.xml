@@ -3,4 +3,33 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Choose text</string>
     <string name="title_notifications">Saved</string>
+
+    <string name="userAtTitle">You were at:"</string>
+
+    <string name="homeric_hymns">Homeric Hymns:</string>
+
+    <string name="hymn1_title">Hymn 1 \n To Dionysus</string>
+    <string name="hymn2_title">Hymn 2 \n To Demeter</string>
+    <string name="hymn3_title">Hymn 3 \n To Apollo</string>
+    <string name="hymn4_title">Hymn 4 \n To Hermes</string>
+    <string name="hymn5_title">Hymn 5 \n To Aphrodite</string>
+    <string name="hymn6_title">Hymn 6 \n To Aphrodite</string>
+
+    <string name="hymn1_greek">Εἲς Διώνυσον</string>
+    <string name="hymn2_greek">To Demeter</string>
+    <string name="hymn3_greek">To Apollo</string>
+    <string name="hymn4_greek">To Hermes</string>
+    <string name="hymn5_greek">To Aphrodite</string>
+    <string name="hymn6_greek">Εἲς Αφροδίτην</string>
+
+    <string name="saveButton">Save Text</string>
+    <string name="nextButton">Next</string>
+    <string name="translateButton">Translate All</string>"
+
+    <string name="backButon">Back</string>
+
+    <string name="AllOriginal">Return to Greek</string>
+    <string name="AllTranslate">Translate All</string>
+
+    <string name="readTextsTitle">Texts read:</string>
 </resources>
