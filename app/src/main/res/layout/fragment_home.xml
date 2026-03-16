@@ -41,7 +41,7 @@
         android:id="@+id/homeStartButton"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="test"
+        android:text="@string/homeStartButton"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

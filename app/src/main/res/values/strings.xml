@@ -32,4 +32,6 @@
     <string name="AllTranslate">Translate All</string>
 
     <string name="readTextsTitle">Texts read:</string>
+
+    <string name="homeStartButton">Start reading</string>
 </resources>
