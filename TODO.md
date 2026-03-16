@@ -15,10 +15,11 @@
 
 # Base Functionality:
 
-* Word translation functionality (kill me)
-* Translate the texts myself so that I would own the copyright and be allowed to make it public domain (~kill me x2~ actually this is kind of fun)
+* Dictionary
+* Word translation functionality
+* Translate the texts myself so that I would own the copyright and be allowed to make it public domain
 * Word/Whole text saving functionality
-* Save certain parts of AppState even when user reopens the app - leave for later because complicated
+* Save certain parts of AppState even when the user reopens the app
 
 
 
