@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,6 +33,13 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        val hymn1: Button = binding.hoHy1
+        val hymn2: Button = binding.hoHy2
+        val hymn3: Button = binding.hoHy3
+        val hymn4: Button = binding.hoHy4
+        val hymn5: Button = binding.hoHy5
+
         return root
     }
 
