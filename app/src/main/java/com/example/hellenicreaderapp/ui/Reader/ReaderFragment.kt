@@ -83,6 +83,7 @@ class ReaderFragment : Fragment() {
                 AppState.currentRead = nextId
                 AppState.lastRead = nextId
 
+                // TODO fix titles to use a global list too
                 val nextTitle = when (nextId) {
                     "hohy1" -> getString(R.string.hymn1_greek)
                     "hohy2" -> getString(R.string.hymn2_greek)

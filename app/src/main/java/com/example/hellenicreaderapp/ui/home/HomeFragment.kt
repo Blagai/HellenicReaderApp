@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.databinding.FragmentHomeBinding
+import com.example.hellenicreaderapp.ui.popups.SelectModeDialogFragment
 
 class HomeFragment : Fragment() {
 
@@ -36,15 +38,14 @@ class HomeFragment : Fragment() {
         // TODO Code to make the start button display a popup letting user select reading order
         val startButton = binding.homeStartButton
         startButton.setOnClickListener {
-            // Add popup with a bunch of buttons to select reading order
+            SelectModeDialogFragment().show(parentFragmentManager, "SelectMode")
         }
 
         // TODO #2 add a separate continue button because I think it's better UX
-        // val continueButton = binding.homeContinueButton
-        // Code to make continueButton visible only when AppState.readingOrder is not null
+        val continueButton = binding.homeContinueButton
+        continueButton.visibility = if (AppState.readingOrder != AppState.orderOfReading.NULL) View.VISIBLE else View.GONE
         // The button functionality will also need AppState to save which was the last text
         // the user was on (in-order last text should be separate from regular last text)
-
 
         return root
     }
