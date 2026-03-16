@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.hellenicreaderapp.R
+import com.example.hellenicreaderapp.utility.GrammarDetailsMap.mappedGrammarDetails
 import com.example.hellenicreaderapp.utility.LitTranslationMap.mappedLitTranslations
 import com.example.hellenicreaderapp.utility.MeaningTranslationMap.mappedMeaningTranslations
 
@@ -46,6 +47,14 @@ class TranslationDialogFragment : DialogFragment() {
             meaningTranslationText.text = "Meaning " + meaningTranslations.joinToString(", ")
         } else {
             meaningTranslationText.text = "No translation found"
+        }
+
+        val grammarDetailsText = view.findViewById<TextView>(R.id.wordGrammmarDetails)
+        val grammarDetails = mappedGrammarDetails[word]
+        if (grammarDetails != null) {
+            grammarDetailsText.text = grammarDetails.joinToString(", ")
+        } else {
+            grammarDetailsText.text = "No details found"
         }
     }
 

@@ -40,6 +40,13 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        try {
+            assets.open("Data/grammar_details.csv").use { inputStream ->
+                DataParser.loadGrammarDetails(inputStream)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         val actionBar = supportActionBar
 

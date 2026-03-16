@@ -20,7 +20,7 @@
         tools:text="Greek" />
 
     <TextView
-        android:id="@+id/wordDetails"
+        android:id="@+id/wordGrammmarDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -62,6 +62,6 @@
         android:layout_marginTop="2dp"
         android:text="Save"
         app:layout_constraintStart_toStartOf="@+id/originalGreekWord"
-        app:layout_constraintTop_toTopOf="@+id/wordDetails" />
+        app:layout_constraintTop_toTopOf="@+id/wordGrammmarDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
