@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.hellenicreaderapp.R
+import com.example.hellenicreaderapp.utility.LitTranslationMap.mappedLitTranslations
 
 class TranslationDialogFragment : DialogFragment() {
     private var word: String? = null
@@ -29,6 +30,14 @@ class TranslationDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val textView = view.findViewById<TextView>(R.id.originalGreekWord)
         textView.text = word
+
+        val translationText = view.findViewById<TextView>(R.id.wordTranslation)
+        val translations = mappedLitTranslations[word]
+        if (translations != null) {
+            translationText.text = "Lit. " + translations.joinToString(", ")
+        } else {
+            translationText.text = "No translation found"
+        }
     }
 
     companion object {
@@ -43,8 +52,3 @@ class TranslationDialogFragment : DialogFragment() {
             }
     }
 }
-
-// 1 - Take word from Reader as string - Works
-// 2 - Compare word to dictionary
-// 3 - If only one definition, show that with all its descriptions
-// 4 - If multiple definitions, more complex logic - I'll figure it out later
