@@ -21,7 +21,6 @@ import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 
-
 class ReaderFragment : Fragment() {
     private var _binding: FragmentReaderBinding? = null
     private val binding get() = _binding!!
@@ -135,7 +134,7 @@ class ReaderFragment : Fragment() {
         // System back should not switch user between tabs ever
         backButton.setOnClickListener {
             AppState.readNoBack = false
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            findNavController().navigate(R.id.navigation_dashboard)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -177,8 +176,6 @@ class ReaderFragment : Fragment() {
                     // Code to show the word translation popup with the selected word
                     // Logic should probably be a dictionary using probability based on the rest of the text
                     // with some manual overrides
-
-
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
@@ -194,7 +191,6 @@ class ReaderFragment : Fragment() {
         textView.movementMethod = LinkMovementMethod.getInstance()
         textView.highlightColor = Color.TRANSPARENT
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
