@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.databinding.FragmentHomeBinding
 import com.example.hellenicreaderapp.ui.popups.SelectModeDialogFragment
+import androidx.navigation.fragment.findNavController
+import com.example.hellenicreaderapp.R
 
 class HomeFragment : Fragment() {
 
@@ -43,9 +45,19 @@ class HomeFragment : Fragment() {
 
         // TODO #2 add a separate continue button because I think it's better UX
         val continueButton = binding.homeContinueButton
-        continueButton.visibility = if (AppState.homeCurrentReadOrder != AppState.orderOfReading.NULL) View.VISIBLE else View.GONE
+        continueButton.visibility = if (AppState.homeCurrentReadOrder != AppState.OrderOfReading.NULL) View.VISIBLE else View.GONE
         // The button functionality will also need AppState to save which was the last text
         // the user was on (in-order last text should be separate from regular last text)
+        continueButton.setOnClickListener {
+            val currentId = AppState.homeCurrentInOrder
+            val currentTitle = "test"
+
+            val bundle = Bundle().apply {
+                putString("textId", currentId)
+                putString("title", currentTitle)
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
+        }
 
         return root
     }

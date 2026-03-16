@@ -39,9 +39,9 @@ class ReaderFragment : Fragment() {
         AppState.currentRead = textId
         AppState.currentReadTitle = title
         AppState.readNoBack = true
-        AppState.lastRead = textId
-
-        if (AppState.isReadingThroughHome) {
+        if (!AppState.isReadingThroughHome) {
+            AppState.lastRead = textId
+        } else {
             AppState.homeCurrentInOrder = textId
         }
 
@@ -79,13 +79,19 @@ class ReaderFragment : Fragment() {
 
         continueButton.setOnClickListener {
             val currentId = AppState.currentRead
-            val readOrder = AppState.getCurrentOrder()
+            val readOrder = if (!AppState.isReadingThroughHome) AppState.getCurrentOrder(AppState.readingOrder) else AppState.getCurrentOrder(AppState.homeCurrentReadOrder)
+
             val currentIndex = readOrder.indexOf(currentId)
 
             if (currentIndex != -1 && currentIndex < readOrder.size - 1) {
                 val nextId = readOrder[currentIndex + 1]
                 AppState.currentRead = nextId
-                AppState.lastRead = nextId
+                if (!AppState.isReadingThroughHome) {
+                    AppState.lastRead = nextId
+                } else {
+                    AppState.homeCurrentInOrder = nextId
+                }
+
 
                 // TODO fix titles to use a global list too
                 val nextTitle = when (nextId) {
