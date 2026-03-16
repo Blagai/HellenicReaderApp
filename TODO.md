@@ -15,7 +15,6 @@
 
 # Base Functionality:
 
-* Fix the titles to be tied to a file in an object somewhere and load with it
 * Save certain parts of AppState even when user reopens the app
 * Add more texts
 * Word translation functionality (kill me)
