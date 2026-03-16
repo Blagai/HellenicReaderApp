@@ -24,7 +24,7 @@
 # Texts to add:
 
 * All Homeric Hymns
-* Illiad and Oddysey
+* Iliad and Odyssey
 * Aristotle works
 * Epictetus works
 * Euripides works
