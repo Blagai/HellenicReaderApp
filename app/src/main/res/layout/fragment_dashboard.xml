@@ -114,6 +114,14 @@
                 android:layout_weight="1"
                 android:text="Hymn 5" />
 
+            <Button
+                android:id="@+id/hoHy6"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Hymn 6" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
