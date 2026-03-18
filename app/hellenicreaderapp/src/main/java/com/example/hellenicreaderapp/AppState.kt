@@ -17,7 +17,9 @@ object AppState {
 
     var readingOrder = OrderOfReading.NULL // Hardcoded test case
 
-    var homeCurrentReadOrder = if (homeReadOrder.toString() == "") OrderOfReading.NULL else toOrderOfReading("homeReadOrder")
+    // TODO fix this
+    var homeCurrentReadOrder = OrderOfReading.NULL // if (homeReadOrder.toString() == "") OrderOfReading.NULL else toOrderOfReading("homeReadOrder") - Commented out since this causes crashing
+
     var homeCurrentInOrder: String? = null
     var isReadingThroughHome = false
 

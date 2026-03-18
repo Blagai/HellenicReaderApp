@@ -5,13 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
-import com.example.hellenicreaderapp.utility.Converters.fromOrderOfReading
 import com.google.android.material.tabs.TabLayout
 import com.example.hellenicreaderapp.utility.DataParser
-import com.example.hellenicreaderapp.utility.saveStateData
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,7 +56,10 @@ class MainActivity : AppCompatActivity() {
         actionBar.setDisplayShowHomeEnabled(true)
 
         val tabLayout = findViewById<TabLayout>(R.id.top_tab_layout)
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
 
         tabLayout.addTab(tabLayout.newTab().setText("Home"))
         tabLayout.addTab(tabLayout.newTab().setText("Choose text"))
