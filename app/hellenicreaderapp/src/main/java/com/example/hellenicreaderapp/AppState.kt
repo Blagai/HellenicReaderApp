@@ -1,5 +1,8 @@
 package com.example.hellenicreaderapp
 
+import com.example.hellenicreaderapp.utility.Converters.toOrderOfReading
+import com.example.hellenicreaderapp.utility.homeReadOrder
+
 object AppState {
     var currentRead: String? = null
     var currentReadTitle: String? = null
@@ -14,7 +17,7 @@ object AppState {
 
     var readingOrder = OrderOfReading.NULL // Hardcoded test case
 
-    var homeCurrentReadOrder = OrderOfReading.NULL
+    var homeCurrentReadOrder = if (homeReadOrder.toString() == "") OrderOfReading.NULL else toOrderOfReading("homeReadOrder")
     var homeCurrentInOrder: String? = null
     var isReadingThroughHome = false
 
@@ -31,4 +34,6 @@ object AppState {
             OrderOfReading.NULL -> emptyList()
         }
     }
+
+    // Save vars on app quit
 }

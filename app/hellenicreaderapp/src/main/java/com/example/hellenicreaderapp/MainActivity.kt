@@ -5,10 +5,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.navigation.findNavController
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
+import com.example.hellenicreaderapp.utility.Converters.fromOrderOfReading
 import com.google.android.material.tabs.TabLayout
 import com.example.hellenicreaderapp.utility.DataParser
+import com.example.hellenicreaderapp.utility.saveStateData
 
 class MainActivity : AppCompatActivity() {
 
