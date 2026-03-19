@@ -1,6 +1,7 @@
 package com.example.hellenicreaderapp
 
 import com.example.hellenicreaderapp.utility.Converters.toOrderOfReading
+import com.example.hellenicreaderapp.utility.getStateData
 import com.example.hellenicreaderapp.utility.homeReadOrder
 
 object AppState {
@@ -17,10 +18,18 @@ object AppState {
 
     var readingOrder = OrderOfReading.NULL // Hardcoded test case
 
-    // TODO fix this
-    var homeCurrentReadOrder = OrderOfReading.NULL // if (homeReadOrder.toString() == "") OrderOfReading.NULL else toOrderOfReading("homeReadOrder") - Commented out since this causes crashing
+    var homeLoadedReadOrder: OrderOfReading = OrderOfReading.NULL
+    var homeCurrentReadOrder: OrderOfReading = OrderOfReading.NULL
 
-    var homeCurrentInOrder: String? = null
+    suspend fun loadReadOrder() {
+        homeLoadedReadOrder = if (getStateData(homeReadOrder) == "") {
+            OrderOfReading.NULL
+        } else {
+            toOrderOfReading(getStateData(homeReadOrder))
+        }
+    }
+
+    var homeCurrentInOrder: String = "hohy1" // Hardcoded test case
     var isReadingThroughHome = false
 
     enum class OrderOfReading {
@@ -36,6 +45,4 @@ object AppState {
             OrderOfReading.NULL -> emptyList()
         }
     }
-
-    // Save vars on app quit
 }

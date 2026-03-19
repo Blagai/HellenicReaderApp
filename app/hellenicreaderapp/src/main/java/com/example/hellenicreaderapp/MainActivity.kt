@@ -1,22 +1,33 @@
 package com.example.hellenicreaderapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
+import com.example.hellenicreaderapp.utility.Converters
 import com.google.android.material.tabs.TabLayout
 import com.example.hellenicreaderapp.utility.DataParser
+import com.example.hellenicreaderapp.utility.dataStoreManager
+import com.example.hellenicreaderapp.utility.homeReadOrder
+import com.example.hellenicreaderapp.utility.saveStateData
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private var ignoreTabSelection = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dataStoreManager.dataStoreInit(this)
+        lifecycleScope.launch {
+            AppState.loadReadOrder()
+        }
 
         AppState.readNoBack = false
 
@@ -121,5 +132,13 @@ class MainActivity : AppCompatActivity() {
             R.id.about -> Toast.makeText(this, "About Clicked", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        lifecycleScope.launch {
+            Log.d("MainActivity", "Coroutine running")
+            saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+        }
     }
 }

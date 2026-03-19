@@ -11,4 +11,9 @@ class HomeViewModel : ViewModel() {
         value = AppState.readTextsNum.toString()
     }
     val readTextsNum: LiveData<String> = _readTextsNum
+
+    private val _buttonVisibility = MutableLiveData<Boolean>().apply {
+        value = AppState.homeCurrentReadOrder == AppState.OrderOfReading.NULL
+    }
+    val buttonVisibility: LiveData<Boolean> = _buttonVisibility
 }

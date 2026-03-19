@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.hellenicreaderapp.AppState
@@ -43,7 +42,10 @@ class HomeFragment : Fragment() {
         }
 
         val continueButton = binding.homeContinueButton
-        continueButton.visibility = if (AppState.homeCurrentReadOrder != AppState.OrderOfReading.NULL) View.VISIBLE else View.GONE
+        homeViewModel.buttonVisibility.observe(viewLifecycleOwner) {
+            continueButton.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
         // The button functionality will also need AppState to save which was the last text
         // the user was on (in-order last text should be separate from regular last text)
         continueButton.setOnClickListener {
