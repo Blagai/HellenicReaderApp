@@ -1,6 +1,5 @@
 package com.example.hellenicreaderapp.ui.Reader
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
@@ -8,20 +7,16 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
 import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
 
 class ReaderFragment : Fragment() {
