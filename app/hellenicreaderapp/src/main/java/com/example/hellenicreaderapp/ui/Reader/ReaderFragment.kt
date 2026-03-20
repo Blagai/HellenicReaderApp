@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,8 @@ class ReaderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textId = ("OriginalTexts/" + arguments?.getString("textId"))
+        val originalId = arguments?.getString("textId")
+        val textId = ("OriginalTexts/$originalId")
         val loadedContent = loadTextFromAssets(textId)
         val preparsedContent = loadedContent.trim().lines()
         val parsedTitle = preparsedContent.firstOrNull() ?: ""
@@ -53,7 +55,9 @@ class ReaderFragment : Fragment() {
         if (!AppState.isReadingThroughHome) {
             AppState.lastRead = textId
         } else {
-            AppState.homeCurrentInOrder = textId
+            if (originalId != null) {
+                AppState.homeCurrentInOrder = originalId
+            }
         }
 
         val backButton = binding.readerBack
@@ -115,8 +119,7 @@ class ReaderFragment : Fragment() {
                     AppState.homeCurrentInOrder = nextId
                 }
 
-
-                // TODO fix titles to use a global list too
+                // TODO fix titles to use a global list too - should use a map
                 val nextTitle = when (nextId) {
                     "hohy1" -> getString(R.string.hymn1_greek)
                     "hohy2" -> getString(R.string.hymn2_greek)

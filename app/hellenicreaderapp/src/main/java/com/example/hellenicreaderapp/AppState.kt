@@ -1,7 +1,9 @@
 package com.example.hellenicreaderapp
 
+import android.util.Log
 import com.example.hellenicreaderapp.utility.Converters.toOrderOfReading
 import com.example.hellenicreaderapp.utility.getStateData
+import com.example.hellenicreaderapp.utility.homeLastRead
 import com.example.hellenicreaderapp.utility.homeReadOrder
 
 object AppState {
@@ -13,24 +15,37 @@ object AppState {
 
     var readTextsNum: Int = 0
 
-    // var defaultAllTextReadingOrder = listOf() - to populate when I have more texts and figure out what I think is a good order
-    var basicHymnReadingOrder = listOf("hohy1", "hohy2", "hohy3", "hohy4", "hohy5", "hohy6")
+    // var defaultAllTextReadingOrder = listOf() - to populate when I have more texts and figure out what I
+    // think is a good order
 
-    var readingOrder = OrderOfReading.NULL // Hardcoded test case
+    // Might be better to work off a file I only load if a certain order is needed
+    // Would require a pretty big refactoring of the code so I'll have to think about it
+    var basicHymnReadingOrder: List<String> = listOf("hohy1", "hohy2", "hohy3", "hohy4", "hohy5", "hohy6")
 
+    var readingOrder = OrderOfReading.DEFAULTREAD
+
+    var isReadingThroughHome = false
     var homeLoadedReadOrder: OrderOfReading = OrderOfReading.NULL
     var homeCurrentReadOrder: OrderOfReading = OrderOfReading.NULL
 
-    suspend fun loadReadOrder() {
+    var homeLoadedInOrder: String = "hohy1" // Replace with check for selected read order
+    var homeCurrentInOrder: String = "hohy1" // Replace with check for selected read order
+    suspend fun loadReadData() {
         homeLoadedReadOrder = if (getStateData(homeReadOrder) == "") {
             OrderOfReading.NULL
         } else {
             toOrderOfReading(getStateData(homeReadOrder))
         }
-    }
+        homeCurrentReadOrder = homeLoadedReadOrder
 
-    var homeCurrentInOrder: String = "hohy1" // Hardcoded test case
-    var isReadingThroughHome = false
+        homeLoadedInOrder = if (getStateData(homeLastRead) == "") {
+            "hohy1" // Replace with check for selected read order
+        } else {
+            getStateData(homeLastRead)
+        }
+         homeCurrentInOrder = homeLoadedInOrder
+        Log.d("AppState", "Loaded read data: $homeLoadedReadOrder, $homeLoadedInOrder")
+    }
 
     enum class OrderOfReading {
         DEFAULTREAD,

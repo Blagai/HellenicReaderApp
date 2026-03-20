@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
         // The button functionality will also need AppState to save which was the last text
         // the user was on (in-order last text should be separate from regular last text)
         continueButton.setOnClickListener {
+            AppState.isReadingThroughHome = true
             val currentId = AppState.homeCurrentInOrder
             val currentTitle = "test"
 

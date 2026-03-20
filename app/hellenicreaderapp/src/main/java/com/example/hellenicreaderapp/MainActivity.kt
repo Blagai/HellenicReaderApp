@@ -13,6 +13,7 @@ import com.example.hellenicreaderapp.utility.Converters
 import com.google.android.material.tabs.TabLayout
 import com.example.hellenicreaderapp.utility.DataParser
 import com.example.hellenicreaderapp.utility.dataStoreManager
+import com.example.hellenicreaderapp.utility.homeLastRead
 import com.example.hellenicreaderapp.utility.homeReadOrder
 import com.example.hellenicreaderapp.utility.saveStateData
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         dataStoreManager.dataStoreInit(this)
         lifecycleScope.launch {
-            AppState.loadReadOrder()
+            AppState.loadReadData()
         }
 
         AppState.readNoBack = false
@@ -134,11 +135,14 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onStop() {
+    override fun onStop() { // TODO move to saving on changes instead
         super.onStop()
         lifecycleScope.launch {
-            Log.d("MainActivity", "Coroutine running")
-            saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+            if (AppState.homeCurrentReadOrder != AppState.homeLoadedReadOrder) {
+                saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+            }
+            Log.d("AppState", "Saved read data: ${AppState.homeCurrentReadOrder}, ${AppState.homeCurrentInOrder}")
+            saveStateData(homeLastRead, AppState.homeCurrentInOrder) // Doesn't run when I kill it from app control, no time?
         }
     }
 }
