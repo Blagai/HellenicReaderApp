@@ -10,6 +10,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.hellenicreaderapp.AppState
 import kotlinx.coroutines.flow.first
 
+// TODO Save the last text read, the order of reading, the num of texts read
+
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "StateData")
 lateinit var stateDataStore: DataStore<Preferences>
 object dataStoreManager {
