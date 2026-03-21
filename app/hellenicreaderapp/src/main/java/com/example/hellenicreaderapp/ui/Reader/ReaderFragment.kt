@@ -17,7 +17,11 @@ import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.lifecycleScope
 import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
+import com.example.hellenicreaderapp.utility.homeLastRead
+import com.example.hellenicreaderapp.utility.saveStateData
+import kotlinx.coroutines.launch
 
 class ReaderFragment : Fragment() {
     private var _binding: FragmentReaderBinding? = null
@@ -52,6 +56,9 @@ class ReaderFragment : Fragment() {
         } else {
             if (originalId != null) {
                 AppState.homeCurrentInOrder = originalId
+                lifecycleScope.launch {
+                    saveStateData(homeLastRead, originalId)
+                }
             }
         }
 

@@ -6,9 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
+import com.example.hellenicreaderapp.utility.Converters
+import com.example.hellenicreaderapp.utility.homeReadOrder
+import com.example.hellenicreaderapp.utility.saveStateData
+import kotlinx.coroutines.launch
 
 class SelectModeDialogFragment : DialogFragment() {
     override fun onCreateView(
@@ -27,6 +32,9 @@ class SelectModeDialogFragment : DialogFragment() {
         button1.setOnClickListener {
             AppState.homeCurrentReadOrder = AppState.OrderOfReading.DEFAULTREAD
             AppState.isReadingThroughHome = true
+            lifecycleScope.launch {
+                saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+            }
             // Navigate to reader fragment with the first item of the selected order
             val firstId = AppState.getCurrentOrder(AppState.homeCurrentReadOrder).first()
             val firstTitle = "Εἲς Διώνυσον"

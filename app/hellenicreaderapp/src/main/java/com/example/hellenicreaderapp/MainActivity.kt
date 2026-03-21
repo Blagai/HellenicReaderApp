@@ -1,7 +1,6 @@
 package com.example.hellenicreaderapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -9,13 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
-import com.example.hellenicreaderapp.utility.Converters
 import com.google.android.material.tabs.TabLayout
 import com.example.hellenicreaderapp.utility.DataParser
 import com.example.hellenicreaderapp.utility.dataStoreManager
-import com.example.hellenicreaderapp.utility.homeLastRead
-import com.example.hellenicreaderapp.utility.homeReadOrder
-import com.example.hellenicreaderapp.utility.saveStateData
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -133,16 +128,5 @@ class MainActivity : AppCompatActivity() {
             R.id.about -> Toast.makeText(this, "About Clicked", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onStop() { // TODO move to saving on changes instead
-        super.onStop()
-        lifecycleScope.launch {
-            if (AppState.homeCurrentReadOrder != AppState.homeLoadedReadOrder) {
-                saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
-            }
-            Log.d("AppState", "Saved read data: ${AppState.homeCurrentReadOrder}, ${AppState.homeCurrentInOrder}")
-            saveStateData(homeLastRead, AppState.homeCurrentInOrder) // Doesn't run when I kill it from app control, no time?
-        }
     }
 }
