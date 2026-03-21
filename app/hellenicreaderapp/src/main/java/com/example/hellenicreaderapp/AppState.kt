@@ -8,7 +8,6 @@ import com.example.hellenicreaderapp.utility.homeReadOrder
 
 object AppState {
     var currentRead: String? = null
-    var currentReadTitle: String? = null
     var readNoBack: Boolean = false
 
     var lastRead: String? = null // for Dashboard continue button

@@ -19,6 +19,8 @@ import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.lifecycleScope
 import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
+import com.example.hellenicreaderapp.utility.TitleMap
+import com.example.hellenicreaderapp.utility.TranslatedTitleMap
 import com.example.hellenicreaderapp.utility.homeLastRead
 import com.example.hellenicreaderapp.utility.saveStateData
 import kotlinx.coroutines.launch
@@ -40,17 +42,25 @@ class ReaderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val originalId = arguments?.getString("textId")
-        val textId = ("OriginalTexts/$originalId")
+        val originalTitle = TitleMap.mappedTitles[originalId]
+
+        val textId = ("OriginalTexts/$originalId.txt")
+
         val loadedContent = loadTextFromAssets(textId)
-        val preparsedContent = loadedContent.trim().lines()
-        val parsedTitle = preparsedContent.firstOrNull() ?: ""
-        val parsedText = if(preparsedContent.size > 1) {
-            preparsedContent.drop(1).joinToString("\n") } else { "" }
-        makeWordsClickable(binding.readerTextView, parsedText)
-        binding.readerTitle.text = parsedTitle
-        AppState.currentRead = arguments?.getString("textId")
-        AppState.currentReadTitle = parsedTitle
+        val parsedContent = loadedContent.trim().lines().joinToString()
+
+        val translatedId = "Translations/${originalId}_eng.txt"
+        val translatedTitle = TranslatedTitleMap.mappedTitles[originalId]
+        val loadedTranslatedContent = loadTextFromAssets(translatedId)
+        val parsedTranslatedContent = loadedTranslatedContent.trim().lines().joinToString()
+        var isTranslated = false
+
+        makeWordsClickable(binding.readerTextView, parsedContent)
+        binding.readerTitle.text = originalTitle
+
         AppState.readNoBack = true
+        AppState.currentRead = originalId
+
         if (!AppState.isReadingThroughHome) {
             AppState.lastRead = textId
         } else {
@@ -66,40 +76,18 @@ class ReaderFragment : Fragment() {
         val translateButton = binding.readerTranslate
         val continueButton = binding.continueButton
 
-        var isTranslated = false
-
         translateButton.setOnClickListener {
-            val currentId = AppState.currentRead
             if (!isTranslated) {
-                val translatedId = "${currentId}_eng"
-                val loadedTranslatedContent = loadTextFromAssets(translatedId)
-                val preparsedTranslatedContent = loadedTranslatedContent.trim().lines()
-                val translatedTitle = when (currentId) {
-                    "hohy1" -> getString(R.string.hymn1_title_1line)
-                    "hohy2" -> getString(R.string.hymn2_title_1line)
-                    "hohy3" -> getString(R.string.hymn3_title_1line)
-                    "hohy4" -> getString(R.string.hymn4_title_1line)
-                    "hohy5" -> getString(R.string.hymn5_title_1line)
-                    "hohy6" -> getString(R.string.hymn6_title_1line)
-                    else -> ""
-                }
-                val parsedTranslatedText = if(preparsedTranslatedContent.size > 1) {
-                    preparsedTranslatedContent.drop(1).joinToString("\n") } else { "" }
-                binding.readerTextView.text = parsedTranslatedText
+                binding.readerTextView.text = parsedTranslatedContent
                 binding.readerTitle.text = translatedTitle
 
                 isTranslated = true
 
                 translateButton.setText(R.string.AllOriginal)
             } else {
-                val originalTextId = "OriginalTexts/$currentId"
-                val loadedContent = loadTextFromAssets(originalTextId)
-                val preparsedContent = loadedContent.trim().lines()
-                val parsedText = if(preparsedContent.size > 1) {
-                    preparsedContent.drop(1).joinToString("\n") } else { "" }
-                
-                makeWordsClickable(binding.readerTextView, parsedText)
-                binding.readerTitle.text = AppState.currentReadTitle
+                makeWordsClickable(binding.readerTextView, parsedContent)
+                binding.readerTitle.text = originalTitle
+
                 isTranslated = false
 
                 translateButton.setText(R.string.AllTranslate)
@@ -107,36 +95,14 @@ class ReaderFragment : Fragment() {
         }
 
         continueButton.setOnClickListener {
-            val currentId = AppState.currentRead
             val readOrder = if (!AppState.isReadingThroughHome) AppState.getCurrentOrder(AppState.readingOrder) else AppState.getCurrentOrder(AppState.homeCurrentReadOrder)
-
-            val currentIndex = readOrder.indexOf(currentId)
+            val currentIndex = readOrder.indexOf(originalId)
 
             if (currentIndex != -1 && currentIndex < readOrder.size - 1) {
                 val nextId = readOrder[currentIndex + 1]
-                AppState.currentRead = nextId
-                if (!AppState.isReadingThroughHome) {
-                    AppState.lastRead = nextId
-                } else {
-                    AppState.homeCurrentInOrder = nextId
-                }
-
-                // TODO fix titles to use a global list too - should use a map
-                val nextTitle = when (nextId) {
-                    "hohy1" -> getString(R.string.hymn1_greek)
-                    "hohy2" -> getString(R.string.hymn2_greek)
-                    "hohy3" -> getString(R.string.hymn3_greek)
-                    "hohy4" -> getString(R.string.hymn4_greek)
-                    "hohy5" -> getString(R.string.hymn5_greek)
-                    "hohy6" -> getString(R.string.hymn6_greek)
-                    else -> ""
-                }
-
-                AppState.currentReadTitle = nextTitle
 
                 val bundle = Bundle().apply {
                     putString("textId", nextId)
-                    putString("title", nextTitle)
                 }
 
                 findNavController().navigate(R.id.readerFragment, bundle)
@@ -147,14 +113,12 @@ class ReaderFragment : Fragment() {
             }
         }
 
-        // Should make the system back take to last text
-        // and the back button take the user to the text picker
-        // System back should not switch user between tabs ever
         backButton.setOnClickListener {
             AppState.readNoBack = false
             findNavController().navigate(R.id.navigation_dashboard)
         }
 
+        // System back should not switch user between tabs ever
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AppState.readNoBack = false
@@ -166,14 +130,7 @@ class ReaderFragment : Fragment() {
 
     private fun loadTextFromAssets(filename: String): String {
         return try {
-            // Check if it's an English version (contains "_eng")
-            val path = if (filename.contains("_eng")) {
-                "EnglishVersions/$filename.txt"
-            } else {
-                "$filename.txt"
-            }
-
-            requireContext().assets.open(path).bufferedReader().use { it.readText() }
+            requireContext().assets.open(filename).bufferedReader().use { it.readText() }
         } catch (e: Exception) {
             e.printStackTrace()
             "Failed to load: ${e.message}"

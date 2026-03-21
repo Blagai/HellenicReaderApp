@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                         if (AppState.readNoBack && AppState.currentRead != null) {
                             val bundle = Bundle().apply {
                                 putString("textId", AppState.currentRead)
-                                putString("title", AppState.currentReadTitle)
                             }
                             navController.navigate(R.id.readerFragment, bundle)
                         } else {
