@@ -24,26 +24,21 @@ object AppState {
     var readingOrder = OrderOfReading.DEFAULTREAD
 
     var isReadingThroughHome = false
-    var homeLoadedReadOrder: OrderOfReading = OrderOfReading.NULL
-    var homeCurrentReadOrder: OrderOfReading = OrderOfReading.NULL
-
-    var homeLoadedInOrder: String = "hohy1" // Replace with check for selected read order
+    var homeReadingOrder: OrderOfReading = OrderOfReading.NULL
     var homeCurrentInOrder: String = "hohy1" // Replace with check for selected read order
-    suspend fun loadReadData() {
-        homeLoadedReadOrder = if (getStringData(homeReadOrder) == "") {
+
+    suspend fun loadData() {
+        homeReadingOrder = if (getStringData(homeReadOrder) == "") {
             OrderOfReading.NULL
         } else {
             toOrderOfReading(getStringData(homeReadOrder))
         }
-        homeCurrentReadOrder = homeLoadedReadOrder
 
-        homeLoadedInOrder = if (getStringData(homeLastRead) == "") {
+        homeCurrentInOrder = if (getStringData(homeLastRead) == "") {
             "hohy1" // Replace with check for selected read order
         } else {
             getStringData(homeLastRead)
         }
-         homeCurrentInOrder = homeLoadedInOrder
-        Log.d("AppState", "Loaded read data: $homeLoadedReadOrder, $homeLoadedInOrder")
     }
 
     enum class OrderOfReading {

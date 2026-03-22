@@ -22,6 +22,7 @@ import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
 import com.example.hellenicreaderapp.utility.TitleMap
 import com.example.hellenicreaderapp.utility.TranslatedTitleMap
 import com.example.hellenicreaderapp.utility.homeLastRead
+import com.example.hellenicreaderapp.utility.lastRead
 import com.example.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
@@ -63,6 +64,9 @@ class ReaderFragment : Fragment() {
 
         if (!AppState.isReadingThroughHome) {
             AppState.lastRead = textId
+            lifecycleScope.launch {
+                saveStringData(lastRead, textId)
+            }
         } else {
             if (originalId != null) {
                 AppState.homeCurrentInOrder = originalId
@@ -95,7 +99,7 @@ class ReaderFragment : Fragment() {
         }
 
         continueButton.setOnClickListener {
-            val readOrder = if (!AppState.isReadingThroughHome) AppState.getCurrentOrder(AppState.readingOrder) else AppState.getCurrentOrder(AppState.homeCurrentReadOrder)
+            val readOrder = if (!AppState.isReadingThroughHome) AppState.getCurrentOrder(AppState.readingOrder) else AppState.getCurrentOrder(AppState.homeReadingOrder)
             val currentIndex = readOrder.indexOf(originalId)
 
             if (currentIndex != -1 && currentIndex < readOrder.size - 1) {

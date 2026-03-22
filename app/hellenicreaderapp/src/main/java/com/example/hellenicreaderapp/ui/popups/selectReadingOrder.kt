@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hellenicreaderapp.AppState
+import com.example.hellenicreaderapp.AppState.homeReadingOrder
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.utility.Converters
 import com.example.hellenicreaderapp.utility.homeReadOrder
@@ -30,13 +31,13 @@ class SelectModeDialogFragment : DialogFragment() {
         val button2 = view.findViewById<Button>(R.id.buttonOrder2)
 
         button1.setOnClickListener {
-            AppState.homeCurrentReadOrder = AppState.OrderOfReading.DEFAULTREAD
+            homeReadingOrder = AppState.OrderOfReading.DEFAULTREAD
             AppState.isReadingThroughHome = true
             lifecycleScope.launch {
-                saveStringData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+                saveStringData(homeReadOrder, Converters.fromOrderOfReading(homeReadingOrder))
             }
             // Navigate to reader fragment with the first item of the selected order
-            val firstId = AppState.getCurrentOrder(AppState.homeCurrentReadOrder).first()
+            val firstId = AppState.getCurrentOrder(homeReadingOrder).first()
             val firstTitle = "Εἲς Διώνυσον"
             val bundle = Bundle().apply {
                 putString("textId", firstId)

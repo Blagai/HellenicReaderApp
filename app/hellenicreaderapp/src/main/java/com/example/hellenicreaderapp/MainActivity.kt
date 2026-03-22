@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         dataStoreManager.dataStoreInit(this)
         lifecycleScope.launch {
-            AppState.loadReadData()
+            AppState.loadData()
         }
 
         AppState.readNoBack = false
