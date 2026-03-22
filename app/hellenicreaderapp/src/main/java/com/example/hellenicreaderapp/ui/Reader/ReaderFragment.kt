@@ -22,7 +22,7 @@ import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
 import com.example.hellenicreaderapp.utility.TitleMap
 import com.example.hellenicreaderapp.utility.TranslatedTitleMap
 import com.example.hellenicreaderapp.utility.homeLastRead
-import com.example.hellenicreaderapp.utility.saveStateData
+import com.example.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
 class ReaderFragment : Fragment() {
@@ -67,7 +67,7 @@ class ReaderFragment : Fragment() {
             if (originalId != null) {
                 AppState.homeCurrentInOrder = originalId
                 lifecycleScope.launch {
-                    saveStateData(homeLastRead, originalId)
+                    saveStringData(homeLastRead, originalId)
                 }
             }
         }

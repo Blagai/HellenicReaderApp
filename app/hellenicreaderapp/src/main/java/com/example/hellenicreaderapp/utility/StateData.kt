@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.hellenicreaderapp.AppState
@@ -23,19 +24,32 @@ object dataStoreManager {
 val homeReadOrder = stringPreferencesKey("homeReadOrder")
 val homeLastRead = stringPreferencesKey("homeLastRead")
 val lastRead = stringPreferencesKey("lastRead")
-
+val readOrder = stringPreferencesKey("readOrder")
+val readTextsNum = intPreferencesKey("readTextsNum")
 
 // Functions and converters
-suspend fun saveStateData(key: Preferences.Key<String>, value: String) {
+suspend fun saveStringData(key: Preferences.Key<String>, value: String) {
     stateDataStore.edit { preferences ->
         preferences[key] = value
     }
 }
 
-suspend fun getStateData(key: Preferences.Key<String>): String {
+suspend fun saveIntData(key: Preferences.Key<Int>, value: Int) {
+    stateDataStore.edit { preferences ->
+        preferences[key] = value
+    }
+}
+
+suspend fun getStringData(key: Preferences.Key<String>): String {
     val preferences = stateDataStore.data.first()
     Log.d("DataLoad", "Loaded data: ${preferences[key]}")
     return preferences[key] ?: ""
+}
+
+suspend fun getIntData(key: Preferences.Key<Int>): Int {
+    val preferences = stateDataStore.data.first()
+    Log.d("DataLoad", "Loaded data: ${preferences[key]}")
+    return preferences[key] ?: 0
 }
 
 object Converters {

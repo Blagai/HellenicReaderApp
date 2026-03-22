@@ -12,7 +12,7 @@ import com.example.hellenicreaderapp.AppState
 import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.utility.Converters
 import com.example.hellenicreaderapp.utility.homeReadOrder
-import com.example.hellenicreaderapp.utility.saveStateData
+import com.example.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
 class SelectModeDialogFragment : DialogFragment() {
@@ -33,7 +33,7 @@ class SelectModeDialogFragment : DialogFragment() {
             AppState.homeCurrentReadOrder = AppState.OrderOfReading.DEFAULTREAD
             AppState.isReadingThroughHome = true
             lifecycleScope.launch {
-                saveStateData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
+                saveStringData(homeReadOrder, Converters.fromOrderOfReading(AppState.homeCurrentReadOrder))
             }
             // Navigate to reader fragment with the first item of the selected order
             val firstId = AppState.getCurrentOrder(AppState.homeCurrentReadOrder).first()

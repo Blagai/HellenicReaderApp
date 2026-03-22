@@ -2,7 +2,7 @@ package com.example.hellenicreaderapp
 
 import android.util.Log
 import com.example.hellenicreaderapp.utility.Converters.toOrderOfReading
-import com.example.hellenicreaderapp.utility.getStateData
+import com.example.hellenicreaderapp.utility.getStringData
 import com.example.hellenicreaderapp.utility.homeLastRead
 import com.example.hellenicreaderapp.utility.homeReadOrder
 
@@ -30,17 +30,17 @@ object AppState {
     var homeLoadedInOrder: String = "hohy1" // Replace with check for selected read order
     var homeCurrentInOrder: String = "hohy1" // Replace with check for selected read order
     suspend fun loadReadData() {
-        homeLoadedReadOrder = if (getStateData(homeReadOrder) == "") {
+        homeLoadedReadOrder = if (getStringData(homeReadOrder) == "") {
             OrderOfReading.NULL
         } else {
-            toOrderOfReading(getStateData(homeReadOrder))
+            toOrderOfReading(getStringData(homeReadOrder))
         }
         homeCurrentReadOrder = homeLoadedReadOrder
 
-        homeLoadedInOrder = if (getStateData(homeLastRead) == "") {
+        homeLoadedInOrder = if (getStringData(homeLastRead) == "") {
             "hohy1" // Replace with check for selected read order
         } else {
-            getStateData(homeLastRead)
+            getStringData(homeLastRead)
         }
          homeCurrentInOrder = homeLoadedInOrder
         Log.d("AppState", "Loaded read data: $homeLoadedReadOrder, $homeLoadedInOrder")
