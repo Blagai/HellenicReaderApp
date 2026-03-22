@@ -23,9 +23,9 @@ object dataStoreManager {
 
 val homeReadOrder = stringPreferencesKey("homeReadOrder")
 val homeLastRead = stringPreferencesKey("homeLastRead")
-val lastRead = stringPreferencesKey("lastRead")
+val dataLastRead = stringPreferencesKey("dataLastRead")
 val readOrder = stringPreferencesKey("readOrder")
-val readTextsNum = intPreferencesKey("readTextsNum")
+val dataReadTextsNum = intPreferencesKey("readTextsNum")
 
 // Functions and converters
 suspend fun saveStringData(key: Preferences.Key<String>, value: String) {

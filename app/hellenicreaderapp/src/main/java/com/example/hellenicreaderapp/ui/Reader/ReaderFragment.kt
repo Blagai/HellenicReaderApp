@@ -18,11 +18,14 @@ import com.example.hellenicreaderapp.R
 import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.lifecycleScope
+import com.example.hellenicreaderapp.AppState.readTextsNum
 import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
 import com.example.hellenicreaderapp.utility.TitleMap
 import com.example.hellenicreaderapp.utility.TranslatedTitleMap
+import com.example.hellenicreaderapp.utility.dataLastRead
+import com.example.hellenicreaderapp.utility.dataReadTextsNum
 import com.example.hellenicreaderapp.utility.homeLastRead
-import com.example.hellenicreaderapp.utility.lastRead
+import com.example.hellenicreaderapp.utility.saveIntData
 import com.example.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
@@ -65,7 +68,7 @@ class ReaderFragment : Fragment() {
         if (!AppState.isReadingThroughHome) {
             AppState.lastRead = textId
             lifecycleScope.launch {
-                saveStringData(lastRead, textId)
+                saveStringData(dataLastRead, textId)
             }
         } else {
             if (originalId != null) {
@@ -111,7 +114,10 @@ class ReaderFragment : Fragment() {
 
                 findNavController().navigate(R.id.readerFragment, bundle)
 
-                AppState.readTextsNum++
+                readTextsNum++
+                lifecycleScope.launch {
+                    saveIntData(dataReadTextsNum, readTextsNum)
+                }
             } else {
                 // Show error
             }

@@ -51,7 +51,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy1")
-                putString("title", context?.getString(R.string.hymn1_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
@@ -61,7 +60,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy2")
-                putString("title", context?.getString(R.string.hymn2_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
@@ -71,7 +69,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy3")
-                putString("title", context?.getString(R.string.hymn3_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
@@ -81,7 +78,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy4")
-                putString("title", context?.getString(R.string.hymn4_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
@@ -91,7 +87,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy5")
-                putString("title", context?.getString(R.string.hymn5_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
@@ -101,7 +96,6 @@ class DashboardFragment : Fragment() {
             AppState.isReadingThroughHome = false
             val bundle = Bundle().apply {
                 putString("textId", "hohy6")
-                putString("title", context?.getString(R.string.hymn6_greek))
             }
             findNavController().navigate(R.id.readerFragment, bundle)
             dashboardViewModel.refreshLastRead()
