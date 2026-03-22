@@ -7,6 +7,7 @@
 
 # Bugs:
 
+* Home page doesn't show the loaded data until the tab is switched at least once
 * Fix next button not working when selecting texts manually
 * Continue button disappears when reopening the app
 
