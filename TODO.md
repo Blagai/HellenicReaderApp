@@ -1,6 +1,5 @@
 # Improvements:
 
-* Title of lastRead should be the title of the story and not the file name
 * Make the UI not ugly
 * Design a logo
 

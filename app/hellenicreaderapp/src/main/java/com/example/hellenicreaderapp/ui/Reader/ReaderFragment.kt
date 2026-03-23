@@ -45,7 +45,7 @@ class ReaderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val originalId = arguments?.getString("textId")
+        val originalId = arguments?.getString("textId").toString() // Fucking stupid that I have to change a "maybe string" to a string
         val originalTitle = TitleMap.mappedTitles[originalId]
 
         val textId = ("OriginalTexts/$originalId.txt")
@@ -66,9 +66,9 @@ class ReaderFragment : Fragment() {
         AppState.currentRead = originalId
 
         if (!AppState.isReadingThroughHome) {
-            AppState.lastRead = textId
+            AppState.lastRead = originalId
             lifecycleScope.launch {
-                saveStringData(dataLastRead, textId)
+                saveStringData(dataLastRead, originalId)
             }
         } else {
             if (originalId != null) {
