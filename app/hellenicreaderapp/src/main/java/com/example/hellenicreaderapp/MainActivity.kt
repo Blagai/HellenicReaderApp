@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -123,8 +124,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings -> Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show()
-            R.id.about -> Toast.makeText(this, "About Clicked", Toast.LENGTH_SHORT).show()
+            // R.id.settings -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.settingsFragment)
+            R.id.about -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.aboutFragment)
         }
         return super.onOptionsItemSelected(item)
     }

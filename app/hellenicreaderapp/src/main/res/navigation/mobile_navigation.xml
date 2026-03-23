@@ -31,4 +31,11 @@
             android:name="textId"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.hellenicreaderapp.ui.Misc.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about">
+    </fragment>
 </navigation>
