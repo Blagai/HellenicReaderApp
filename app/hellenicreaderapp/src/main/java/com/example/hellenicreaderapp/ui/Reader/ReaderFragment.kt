@@ -71,7 +71,7 @@ class ReaderFragment : Fragment() {
                 saveStringData(dataLastRead, originalId)
             }
         } else {
-            if (originalId != null) {
+            if (originalId != "") {
                 AppState.homeCurrentInOrder = originalId
                 lifecycleScope.launch {
                     saveStringData(homeLastRead, originalId)
