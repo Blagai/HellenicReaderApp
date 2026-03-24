@@ -12,6 +12,7 @@ import com.example.hellenicreaderapp.utility.DataParser
 import com.example.hellenicreaderapp.utility.dataStoreManager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         dataStoreManager.dataStoreInit(this)
-        lifecycleScope.launch {
+        runBlocking {
             AppState.loadData()
         }
 
