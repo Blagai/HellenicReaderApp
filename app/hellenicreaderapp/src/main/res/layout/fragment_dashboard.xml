@@ -58,7 +58,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            style="?android:attr/buttonBarStyle">
 
             <Button
                 android:id="@+id/hoHy1"
@@ -66,7 +67,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn1_title" />
+                android:text="@string/hymn1_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/hoHy2"
@@ -74,7 +76,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn2_title" />
+                android:text="@string/hymn2_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/hoHy3"
@@ -82,7 +85,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn3_title" />
+                android:text="@string/hymn3_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/hoHy4"
@@ -90,7 +94,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn4_title" />
+                android:text="@string/hymn4_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/hoHy5"
@@ -98,7 +103,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn5_title" />
+                android:text="@string/hymn5_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/hoHy6"
@@ -106,7 +112,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="@string/hymn6_title" />
+                android:text="@string/hymn6_title"
+                style="?android:attr/buttonBarButtonStyle"/>
 
         </LinearLayout>
     </HorizontalScrollView>
