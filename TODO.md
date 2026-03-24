@@ -15,7 +15,6 @@
 * Populate dictionary
 * Translate the texts myself so that I would own the copyright and be allowed to make it public domain
 * Settings page
-* About page
 
 
 # Texts to add:
