@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,9 +22,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val splashscreen = installSplashScreen()
+        var splashscreenVisible = true
+        splashscreen.setKeepOnScreenCondition { splashscreenVisible }
+
         dataStoreManager.dataStoreInit(this)
         runBlocking {
             AppState.loadData()
+            splashscreenVisible = false
         }
 
         AppState.readNoBack = false
