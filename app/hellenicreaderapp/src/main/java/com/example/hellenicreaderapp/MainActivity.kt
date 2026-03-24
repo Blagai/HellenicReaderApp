@@ -5,14 +5,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.hellenicreaderapp.databinding.ActivityMainBinding
 import com.example.hellenicreaderapp.utility.DataParser
 import com.example.hellenicreaderapp.utility.dataStoreManager
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
