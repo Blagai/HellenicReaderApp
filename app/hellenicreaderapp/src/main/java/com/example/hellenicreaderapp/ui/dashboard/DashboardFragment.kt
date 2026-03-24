@@ -26,7 +26,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this)[DashboardViewModel::class.java]
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -34,6 +34,15 @@ class DashboardFragment : Fragment() {
         val textLastRead = binding.lastRead
         dashboardViewModel.lastReadText.observe(viewLifecycleOwner) {
             textLastRead.text = it
+        }
+
+        val dashContButton = binding.dashContinueButton
+        dashContButton.setOnClickListener {
+            AppState.isReadingThroughHome = false
+            val bundle = Bundle().apply {
+                putString("textId", AppState.lastRead)
+            }
+            findNavController().navigate(R.id.readerFragment, bundle)
         }
 
         dashboardViewModel.refreshLastRead()
