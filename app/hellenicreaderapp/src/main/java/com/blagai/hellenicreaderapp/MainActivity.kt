@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> selectTabSafely(tabLayout, 0)
                 R.id.navigation_dashboard -> selectTabSafely(tabLayout, 1)
                 R.id.readerFragment -> selectTabSafely(tabLayout, 1)
-                R.id.navigation_notifications -> selectTabSafely(tabLayout, 2)
+                // R.id.navigation_saved -> selectTabSafely(tabLayout, 2)
             }
         }
     }
