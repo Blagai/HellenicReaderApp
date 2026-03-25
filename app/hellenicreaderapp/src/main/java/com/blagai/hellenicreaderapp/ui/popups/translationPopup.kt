@@ -36,17 +36,24 @@ class TranslationDialogFragment : DialogFragment() {
         val litTranslationText = view.findViewById<TextView>(R.id.wordTranslation)
         val litTranslations = mappedLitTranslations[word]
         if (litTranslations != null) {
-            litTranslationText.text = "Lit. " + litTranslations.joinToString(", ")
+            litTranslationText.text = buildString {
+                append(getString(R.string.lit))
+                append(litTranslations.joinToString(", "))
+            }
         } else {
-            litTranslationText.text = "No translation found"
+            litTranslationText.text = getString(R.string.noTranslation)
         }
 
         val meaningTranslationText = view.findViewById<TextView>(R.id.wordTranslationMeaning)
         val meaningTranslations = mappedMeaningTranslations[word]
         if (meaningTranslations != null) {
-            meaningTranslationText.text = "Meaning " + meaningTranslations.joinToString(", ") + " here"
+            meaningTranslationText.text = buildString {
+                append(getString(R.string.meaning))
+                append(meaningTranslations.joinToString(", "))
+                append(getString(R.string.meanHere))
+            }
         } else {
-            meaningTranslationText.text = "No translation found"
+            meaningTranslationText.text = getString(R.string.noTranslation)
         }
 
         val grammarDetailsText = view.findViewById<TextView>(R.id.wordGrammmarDetails)
@@ -54,7 +61,7 @@ class TranslationDialogFragment : DialogFragment() {
         if (grammarDetails != null) {
             grammarDetailsText.text = grammarDetails.joinToString(", ")
         } else {
-            grammarDetailsText.text = "No details found"
+            grammarDetailsText.text = getString(R.string.noDetails)
         }
 
         //TODO save button functionality
