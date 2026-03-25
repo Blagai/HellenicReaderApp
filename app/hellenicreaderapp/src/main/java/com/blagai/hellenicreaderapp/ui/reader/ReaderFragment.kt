@@ -1,4 +1,4 @@
-package com.blagai.hellenicreaderapp.ui.Reader
+package com.blagai.hellenicreaderapp.ui.reader
 
 import android.graphics.Color
 import android.os.Bundle

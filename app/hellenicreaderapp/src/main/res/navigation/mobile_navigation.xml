@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/readerFragment"
-        android:name="com.blagai.hellenicreaderapp.ui.Reader.ReaderFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.reader.ReaderFragment"
         android:label="Reader">
         <argument
             android:name="textId"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.blagai.hellenicreaderapp.ui.Misc.AboutFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.misc.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about">
     </fragment>

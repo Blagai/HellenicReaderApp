@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
 
-        actionBar!!.title = " Hellenic Reader App"
+        actionBar!!.title = " Hellenic reader App"
         actionBar.subtitle = " Read Ancient Greek texts for free!"
         actionBar.setDisplayUseLogoEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)

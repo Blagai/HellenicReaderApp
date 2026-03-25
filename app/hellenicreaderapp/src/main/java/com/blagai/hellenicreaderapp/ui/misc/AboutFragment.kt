@@ -1,4 +1,4 @@
-package com.blagai.hellenicreaderapp.ui.Misc
+package com.blagai.hellenicreaderapp.ui.misc
 
 import android.os.Bundle
 import android.view.LayoutInflater
