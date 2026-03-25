@@ -23,4 +23,9 @@ class AboutFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity?.findViewById<TabLayout>(R.id.top_tab_layout))?.visibility = View.VISIBLE
+    }
 }
