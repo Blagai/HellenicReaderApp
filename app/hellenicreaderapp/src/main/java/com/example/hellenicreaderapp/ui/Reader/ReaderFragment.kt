@@ -114,7 +114,7 @@ class ReaderFragment : Fragment() {
 
                 findNavController().navigate(R.id.readerFragment, bundle)
 
-                readTextsNum++
+                readTextsNum++ // TODO add check for each text if it has been read already
                 lifecycleScope.launch {
                     saveIntData(dataReadTextsNum, readTextsNum)
                 }
