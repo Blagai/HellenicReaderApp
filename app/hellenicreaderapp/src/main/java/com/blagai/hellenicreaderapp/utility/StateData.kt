@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "StateData")
 lateinit var stateDataStore: DataStore<Preferences>
-object dataStoreManager {
+object DataStoreManager {
     fun dataStoreInit(context: Context) {
         stateDataStore = context.dataStore
     }

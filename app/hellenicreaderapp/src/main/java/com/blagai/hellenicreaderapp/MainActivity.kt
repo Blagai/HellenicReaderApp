@@ -9,7 +9,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blagai.hellenicreaderapp.databinding.ActivityMainBinding
 import com.blagai.hellenicreaderapp.utility.DataParser
-import com.blagai.hellenicreaderapp.utility.dataStoreManager
+import com.blagai.hellenicreaderapp.utility.DataStoreManager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.runBlocking
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         var splashscreenVisible = true
         splashscreen.setKeepOnScreenCondition { splashscreenVisible }
 
-        dataStoreManager.dataStoreInit(this)
+        DataStoreManager.dataStoreInit(this)
         runBlocking {
             AppState.loadData()
             splashscreenVisible = false
