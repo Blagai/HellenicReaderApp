@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">HellenicReaderApp</string>
+    <string name="app_title">Hellenic Reader</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Choose text</string>
     <string name="title_saved">Saved</string>
+
+    <string name="aboutDescription">An app to read ancient greek texts for free, in the original language with optional translations.</string>
 
     <string name="userAtTitle">You were at:"</string>
 
