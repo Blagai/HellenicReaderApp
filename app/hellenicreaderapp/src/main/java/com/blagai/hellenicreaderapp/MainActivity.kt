@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    2 -> navController.navigate(R.id.navigation_notifications)
+                    // 2 -> navController.navigate(R.id.navigation_saved)
                 }
             }
 
