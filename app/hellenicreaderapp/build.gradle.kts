@@ -3,11 +3,11 @@ plugins {
 }
 kotlin {
     android {
-        namespace = "com.example.hellenicreaderapp"
+        namespace = "com.blagai.hellenicreaderapp"
         compileSdk = 36
 
         defaultConfig {
-            applicationId = "com.example.hellenicreaderapp"
+            applicationId = "com.blagai.hellenicreaderapp"
             minSdk = 24
             targetSdk = 36
             versionCode = 1

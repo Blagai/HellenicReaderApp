@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.home
+package com.blagai.hellenicreaderapp.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.hellenicreaderapp.AppState
-import com.example.hellenicreaderapp.databinding.FragmentHomeBinding
-import com.example.hellenicreaderapp.ui.popups.SelectModeDialogFragment
+import com.blagai.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.databinding.FragmentHomeBinding
+import com.blagai.hellenicreaderapp.ui.popups.SelectModeDialogFragment
 import androidx.navigation.fragment.findNavController
-import com.example.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.R
 
 class HomeFragment : Fragment() {
 

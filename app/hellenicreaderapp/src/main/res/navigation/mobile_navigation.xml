@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.hellenicreaderapp.ui.home.HomeFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.hellenicreaderapp.ui.dashboard.DashboardFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.hellenicreaderapp.ui.notifications.NotificationsFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/readerFragment"
-        android:name="com.example.hellenicreaderapp.ui.Reader.ReaderFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.Reader.ReaderFragment"
         android:label="Reader">
         <argument
             android:name="textId"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.hellenicreaderapp.ui.Misc.AboutFragment"
+        android:name="com.blagai.hellenicreaderapp.ui.Misc.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about">
     </fragment>

@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.Reader
+package com.blagai.hellenicreaderapp.ui.Reader
 
 import android.graphics.Color
 import android.os.Bundle
@@ -13,20 +13,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.hellenicreaderapp.AppState
-import com.example.hellenicreaderapp.R
-import com.example.hellenicreaderapp.databinding.FragmentReaderBinding
+import com.blagai.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.lifecycleScope
-import com.example.hellenicreaderapp.AppState.readTextsNum
-import com.example.hellenicreaderapp.ui.popups.TranslationDialogFragment
-import com.example.hellenicreaderapp.utility.TitleMap
-import com.example.hellenicreaderapp.utility.TranslatedTitleMap
-import com.example.hellenicreaderapp.utility.dataLastRead
-import com.example.hellenicreaderapp.utility.dataReadTextsNum
-import com.example.hellenicreaderapp.utility.homeLastRead
-import com.example.hellenicreaderapp.utility.saveIntData
-import com.example.hellenicreaderapp.utility.saveStringData
+import com.blagai.hellenicreaderapp.AppState.readTextsNum
+import com.blagai.hellenicreaderapp.ui.popups.TranslationDialogFragment
+import com.blagai.hellenicreaderapp.utility.TitleMap
+import com.blagai.hellenicreaderapp.utility.TranslatedTitleMap
+import com.blagai.hellenicreaderapp.utility.dataLastRead
+import com.blagai.hellenicreaderapp.utility.dataReadTextsNum
+import com.blagai.hellenicreaderapp.utility.homeLastRead
+import com.blagai.hellenicreaderapp.utility.saveIntData
+import com.blagai.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
 class ReaderFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.popups
+package com.blagai.hellenicreaderapp.ui.popups
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.example.hellenicreaderapp.R
-import com.example.hellenicreaderapp.utility.GrammarDetailsMap.mappedGrammarDetails
-import com.example.hellenicreaderapp.utility.LitTranslationMap.mappedLitTranslations
-import com.example.hellenicreaderapp.utility.MeaningTranslationMap.mappedMeaningTranslations
+import com.blagai.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.utility.GrammarDetailsMap.mappedGrammarDetails
+import com.blagai.hellenicreaderapp.utility.LitTranslationMap.mappedLitTranslations
+import com.blagai.hellenicreaderapp.utility.MeaningTranslationMap.mappedMeaningTranslations
 
 class TranslationDialogFragment : DialogFragment() {
     private var word: String? = null

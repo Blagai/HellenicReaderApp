@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.popups
+package com.blagai.hellenicreaderapp.ui.popups
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.hellenicreaderapp.AppState
-import com.example.hellenicreaderapp.AppState.homeReadingOrder
-import com.example.hellenicreaderapp.R
-import com.example.hellenicreaderapp.utility.Converters
-import com.example.hellenicreaderapp.utility.homeReadOrder
-import com.example.hellenicreaderapp.utility.saveStringData
+import com.blagai.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.AppState.homeReadingOrder
+import com.blagai.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.utility.Converters
+import com.blagai.hellenicreaderapp.utility.homeReadOrder
+import com.blagai.hellenicreaderapp.utility.saveStringData
 import kotlinx.coroutines.launch
 
 class SelectModeDialogFragment : DialogFragment() {

@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.Misc
+package com.blagai.hellenicreaderapp.ui.Misc
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.R
 import com.google.android.material.tabs.TabLayout
 
 

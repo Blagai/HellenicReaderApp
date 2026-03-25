@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.utility
+package com.blagai.hellenicreaderapp.utility
 
 object MeaningTranslationMap {
     private var lastSource: List<String>? = null

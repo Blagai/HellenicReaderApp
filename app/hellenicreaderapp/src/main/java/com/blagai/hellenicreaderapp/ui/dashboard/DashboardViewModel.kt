@@ -1,10 +1,10 @@
-package com.example.hellenicreaderapp.ui.dashboard
+package com.blagai.hellenicreaderapp.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.hellenicreaderapp.AppState
-import com.example.hellenicreaderapp.utility.TranslatedTitleMap
+import com.blagai.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.utility.TranslatedTitleMap
 
 class DashboardViewModel : ViewModel() {
 

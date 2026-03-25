@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.dashboard
+package com.blagai.hellenicreaderapp.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.hellenicreaderapp.AppState
-import com.example.hellenicreaderapp.R
-import com.example.hellenicreaderapp.databinding.FragmentDashboardBinding
+import com.blagai.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.R
+import com.blagai.hellenicreaderapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
 

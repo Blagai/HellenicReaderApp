@@ -1,9 +1,9 @@
-package com.example.hellenicreaderapp.ui.home
+package com.blagai.hellenicreaderapp.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.AppState
 
 class HomeViewModel : ViewModel() {
 

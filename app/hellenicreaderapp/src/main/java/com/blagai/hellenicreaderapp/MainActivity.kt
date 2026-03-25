@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp
+package com.blagai.hellenicreaderapp
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.hellenicreaderapp.databinding.ActivityMainBinding
-import com.example.hellenicreaderapp.utility.DataParser
-import com.example.hellenicreaderapp.utility.dataStoreManager
+import com.blagai.hellenicreaderapp.databinding.ActivityMainBinding
+import com.blagai.hellenicreaderapp.utility.DataParser
+import com.blagai.hellenicreaderapp.utility.dataStoreManager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.runBlocking
 

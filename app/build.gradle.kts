@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "com.example.hellenicreaderapp"
+        namespace = "com.blagai.hellenicreaderapp"
         compileSdk = 36
 
         androidResources {

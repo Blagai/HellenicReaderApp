@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.utility
+package com.blagai.hellenicreaderapp.utility
 
 import android.content.Context
 import android.util.Log
@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.hellenicreaderapp.AppState
+import com.blagai.hellenicreaderapp.AppState
 import kotlinx.coroutines.flow.first
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "StateData")

@@ -1,13 +1,13 @@
-package com.example.hellenicreaderapp.utility
+package com.blagai.hellenicreaderapp.utility
 
-object LitTranslationMap {
+object GrammarDetailsMap {
     private var lastSource: List<String>? = null
     private var cachedMap: Map<String, List<String>> = emptyMap()
 
-    val mappedLitTranslations: Map<String, List<String>>
+    val mappedGrammarDetails: Map<String, List<String>>
         get() {
-            if (lastSource !== DataParser.litTranslations) {
-                lastSource = DataParser.litTranslations
+            if (lastSource !== DataParser.grammarDetails) {
+                lastSource = DataParser.grammarDetails
                 cachedMap = lastSource!!.mapNotNull { line ->
                     val parts = line.split(";")
                     if (parts.size >= 2) {

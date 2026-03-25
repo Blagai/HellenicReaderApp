@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.ui.notifications
+package com.blagai.hellenicreaderapp.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

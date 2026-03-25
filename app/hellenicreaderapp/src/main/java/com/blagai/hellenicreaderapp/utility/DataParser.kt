@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.utility
+package com.blagai.hellenicreaderapp.utility
 
 import java.io.InputStream
 

@@ -1,4 +1,4 @@
-package com.example.hellenicreaderapp.utility
+package com.blagai.hellenicreaderapp.utility
 
 object TranslatedTitleMap {
     val mappedTitles: Map<String, String> = mapOf(

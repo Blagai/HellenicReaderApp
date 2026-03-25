@@ -1,13 +1,13 @@
-package com.example.hellenicreaderapp
+package com.blagai.hellenicreaderapp
 
-import com.example.hellenicreaderapp.utility.Converters.toOrderOfReading
-import com.example.hellenicreaderapp.utility.dataLastRead
-import com.example.hellenicreaderapp.utility.dataReadTextsNum
-import com.example.hellenicreaderapp.utility.getIntData
-import com.example.hellenicreaderapp.utility.getStringData
-import com.example.hellenicreaderapp.utility.homeLastRead
-import com.example.hellenicreaderapp.utility.homeReadOrder
-import com.example.hellenicreaderapp.utility.readOrder
+import com.blagai.hellenicreaderapp.utility.Converters.toOrderOfReading
+import com.blagai.hellenicreaderapp.utility.dataLastRead
+import com.blagai.hellenicreaderapp.utility.dataReadTextsNum
+import com.blagai.hellenicreaderapp.utility.getIntData
+import com.blagai.hellenicreaderapp.utility.getStringData
+import com.blagai.hellenicreaderapp.utility.homeLastRead
+import com.blagai.hellenicreaderapp.utility.homeReadOrder
+import com.blagai.hellenicreaderapp.utility.readOrder
 
 object AppState {
     var currentRead: String? = null
