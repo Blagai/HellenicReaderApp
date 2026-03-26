@@ -2,6 +2,7 @@
 
 * Make the UI not ugly
 * Design a logo
+* Make text loading async
 
 
 # Bugs:
