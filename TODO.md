@@ -6,7 +6,7 @@
 
 # Bugs:
 
-* Home page doesn't show the loaded data until the tab is switched at least once
+* Pressing about button twice causes weird UI things
 
 
 # Base Functionality:
