@@ -3,6 +3,7 @@ package com.blagai.hellenicreaderapp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.Navigation.findNavController
@@ -127,9 +128,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            // R.id.settings -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.settingsFragment)
-            R.id.about -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.aboutFragment)
+        // Probably a stupid way to do it but eh
+        if ((this.findViewById<TabLayout>(R.id.top_tab_layout))?.visibility == View.VISIBLE) {
+            when (item.itemId) {
+                // R.id.settings -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.settingsFragment)
+                R.id.about -> findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.aboutFragment)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

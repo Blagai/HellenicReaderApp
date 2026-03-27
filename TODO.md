@@ -7,7 +7,7 @@
 
 # Bugs:
 
-* Pressing about button twice causes weird UI things
+
 
 
 # Base Functionality:
