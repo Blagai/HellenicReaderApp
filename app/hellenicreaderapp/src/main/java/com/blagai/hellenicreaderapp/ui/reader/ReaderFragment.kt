@@ -10,14 +10,12 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.blagai.hellenicreaderapp.AppState
 import com.blagai.hellenicreaderapp.R
 import com.blagai.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.blagai.hellenicreaderapp.AppState.readTextsNum
 import com.blagai.hellenicreaderapp.ui.popups.TranslationDialogFragment
@@ -178,7 +176,7 @@ class ReaderFragment : Fragment() {
 
     }
 
-    private suspend fun loadTextFromAssets(filename: String): String {
+    private fun loadTextFromAssets(filename: String): String {
         return try {
             requireContext().assets.open(filename).bufferedReader().use { it.readText() }
         } catch (e: Exception) {
