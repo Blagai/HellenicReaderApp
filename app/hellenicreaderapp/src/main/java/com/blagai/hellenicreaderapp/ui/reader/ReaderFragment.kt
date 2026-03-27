@@ -17,6 +17,7 @@ import com.blagai.hellenicreaderapp.AppState
 import com.blagai.hellenicreaderapp.R
 import com.blagai.hellenicreaderapp.databinding.FragmentReaderBinding
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.blagai.hellenicreaderapp.AppState.readTextsNum
 import com.blagai.hellenicreaderapp.ui.popups.TranslationDialogFragment
@@ -27,7 +28,9 @@ import com.blagai.hellenicreaderapp.utility.dataReadTextsNum
 import com.blagai.hellenicreaderapp.utility.homeLastRead
 import com.blagai.hellenicreaderapp.utility.saveIntData
 import com.blagai.hellenicreaderapp.utility.saveStringData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ReaderFragment : Fragment() {
     private var _binding: FragmentReaderBinding? = null
@@ -39,28 +42,58 @@ class ReaderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReaderBinding.inflate(inflater, container, false)
+
+        val backButton = binding.readerBack
+        val translateButton = binding.readerTranslate
+        val continueButton = binding.continueButton
+        val saveButton = binding.saveButton
+
+        backButton.visibility = View.GONE
+        translateButton.visibility = View.GONE
+        continueButton.visibility = View.GONE
+        saveButton.visibility = View.GONE
+
+        // TODO Temporarily make title say loading and change its location
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        lifecycleScope.launch {
+            loadReader()
+        }
+    }
+
+    private suspend fun loadReader() {
         val originalId = arguments?.getString("textId").toString() // Fucking stupid that I have to change a "maybe string" to a string
         val originalTitle = TitleMap.mappedTitles[originalId]
-
         val textId = ("OriginalTexts/$originalId.txt")
-
-        val loadedContent = loadTextFromAssets(textId)
-        val parsedContent = loadedContent.trim().lines().joinToString()
-
         val translatedId = "Translations/${originalId}_eng.txt"
         val translatedTitle = TranslatedTitleMap.mappedTitles[originalId]
-        val loadedTranslatedContent = loadTextFromAssets(translatedId)
-        val parsedTranslatedContent = loadedTranslatedContent.trim().lines().joinToString()
+
         var isTranslated = false
 
-        makeWordsClickable(binding.readerTextView, parsedContent)
+        val (parsedContent, parsedTranslatedContent) = withContext(Dispatchers.IO) {
+            val loadedContent = loadTextFromAssets(textId)
+            val content = loadedContent.trim().lines().joinToString()
+
+            val loadedTranslatedContent = loadTextFromAssets(translatedId)
+            val translatedContent = loadedTranslatedContent.trim().lines().joinToString()
+
+            content to translatedContent
+        }
+
+        val spannableContent = withContext(Dispatchers.Default) {
+            makeWordsClickable(parsedContent)
+        }
+
+        binding.readerTextView.text = spannableContent
+        binding.readerTextView.movementMethod = LinkMovementMethod.getInstance()
+        binding.readerTextView.highlightColor = Color.TRANSPARENT
         binding.readerTitle.text = originalTitle
+
 
         AppState.readNoBack = true
         AppState.currentRead = originalId
@@ -82,6 +115,13 @@ class ReaderFragment : Fragment() {
         val backButton = binding.readerBack
         val translateButton = binding.readerTranslate
         val continueButton = binding.continueButton
+        val saveButton = binding.saveButton
+
+        backButton.visibility = View.VISIBLE
+        translateButton.visibility = View.VISIBLE
+        continueButton.visibility = View.VISIBLE
+        saveButton.visibility = View.VISIBLE
+
 
         translateButton.setOnClickListener {
             if (!isTranslated) {
@@ -92,7 +132,7 @@ class ReaderFragment : Fragment() {
 
                 translateButton.setText(R.string.AllOriginal)
             } else {
-                makeWordsClickable(binding.readerTextView, parsedContent)
+                makeWordsClickable(parsedContent)
                 binding.readerTitle.text = originalTitle
 
                 isTranslated = false
@@ -138,7 +178,7 @@ class ReaderFragment : Fragment() {
 
     }
 
-    private fun loadTextFromAssets(filename: String): String {
+    private suspend fun loadTextFromAssets(filename: String): String {
         return try {
             requireContext().assets.open(filename).bufferedReader().use { it.readText() }
         } catch (e: Exception) {
@@ -147,7 +187,7 @@ class ReaderFragment : Fragment() {
         }
     }
 
-    private fun makeWordsClickable(textView: TextView, text: String) {
+    private fun makeWordsClickable(text: String): SpannableString {
         val spannable = SpannableString(text)
         val wordRegex = Regex("\\S+")
         val punctuationToTrim = ".,;·!?:()[]{}«»\"—".toCharArray()
@@ -155,7 +195,7 @@ class ReaderFragment : Fragment() {
         wordRegex.findAll(text).forEach { matchResult ->
             val fullWord = matchResult.value
             val word = fullWord.trim { it in punctuationToTrim }
-            
+
             if (word.isNotEmpty()) {
                 val start = matchResult.range.first + fullWord.indexOf(word)
                 val end = start + word.length
@@ -169,15 +209,16 @@ class ReaderFragment : Fragment() {
                     override fun updateDrawState(ds: TextPaint) {
                         super.updateDrawState(ds)
                         ds.isUnderlineText = false
-                        ds.color = requireContext().getColor(R.color.white)
+                        // Note: use a Context-safe way to get color if possible,
+                        // or pass it in. Since this is Default dispatcher,
+                        // be careful with requireContext().
+                        ds.color = Color.WHITE
                     }
                 }
                 spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
-        textView.text = spannable
-        textView.movementMethod = LinkMovementMethod.getInstance()
-        textView.highlightColor = Color.TRANSPARENT
+        return spannable
     }
 
     override fun onDestroyView() {
