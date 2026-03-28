@@ -40,9 +40,9 @@
     <string name="homeStartButton">Start reading</string>
     <string name="homeContinueButton">Continue</string>
 
-    <string name="lit">Lit. </string>
+    <string name="lit">Lit.\u0020</string>
     <string name="noTranslation">No translation found</string>
-    <string name="meaning">Meaning </string>
-    <string name="meanHere"> here</string>
+    <string name="meaning">Meaning\u0020</string>
+    <string name="meanHere">\u0020here</string>
     <string name="noDetails">No details found</string>
 </resources>
