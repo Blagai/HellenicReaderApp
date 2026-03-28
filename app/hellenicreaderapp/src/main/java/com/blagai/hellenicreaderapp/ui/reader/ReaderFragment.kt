@@ -46,12 +46,14 @@ class ReaderFragment : Fragment() {
         val continueButton = binding.continueButton
         val saveButton = binding.saveButton
 
-        backButton.visibility = View.GONE
         translateButton.visibility = View.GONE
         continueButton.visibility = View.GONE
         saveButton.visibility = View.GONE
 
-        // TODO Temporarily make title say loading and change its location
+        backButton.setOnClickListener {
+            AppState.readNoBack = false
+            findNavController().navigate(R.id.navigation_dashboard)
+        }
 
         return binding.root
     }
@@ -110,12 +112,10 @@ class ReaderFragment : Fragment() {
             }
         }
 
-        val backButton = binding.readerBack
         val translateButton = binding.readerTranslate
         val continueButton = binding.continueButton
         val saveButton = binding.saveButton
 
-        backButton.visibility = View.VISIBLE
         translateButton.visibility = View.VISIBLE
         continueButton.visibility = View.VISIBLE
         saveButton.visibility = View.VISIBLE
@@ -159,11 +159,6 @@ class ReaderFragment : Fragment() {
             } else {
                 // Show error
             }
-        }
-
-        backButton.setOnClickListener {
-            AppState.readNoBack = false
-            findNavController().navigate(R.id.navigation_dashboard)
         }
 
         // System back should not switch user between tabs ever

@@ -30,6 +30,7 @@
     <string name="translateButton">Translate All</string>"
 
     <string name="backButon">Back</string>
+    <string name="loading">Loading...</string>
 
     <string name="AllOriginal">Return to Greek</string>
     <string name="AllTranslate">Translate All</string>
