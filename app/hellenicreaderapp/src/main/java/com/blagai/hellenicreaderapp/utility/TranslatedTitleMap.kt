@@ -1,6 +1,7 @@
 package com.blagai.hellenicreaderapp.utility
 
 object TranslatedTitleMap {
+    // TODO use strings here, not sure how
     val mappedTitles: Map<String, String> = mapOf(
         "hohy1" to "To Dionysus",
         "hohy2" to "To Demeter",

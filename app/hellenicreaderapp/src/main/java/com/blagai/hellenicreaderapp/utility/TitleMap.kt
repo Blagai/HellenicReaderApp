@@ -1,6 +1,7 @@
 package com.blagai.hellenicreaderapp.utility
 
 object TitleMap {
+    // TODO use strings here, not sure how
     val mappedTitles: Map<String, String> = mapOf(
         "hohy1" to "Εἲς Διώνυσον",
         "hohy2" to "Εἲς Δημήτραν",
