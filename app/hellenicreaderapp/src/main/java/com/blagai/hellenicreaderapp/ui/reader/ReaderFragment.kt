@@ -130,7 +130,7 @@ class ReaderFragment : Fragment() {
 
                 translateButton.setText(R.string.AllOriginal)
             } else {
-                makeWordsClickable(parsedContent)
+                binding.readerTextView.text = spannableContent
                 binding.readerTitle.text = originalTitle
 
                 isTranslated = false
