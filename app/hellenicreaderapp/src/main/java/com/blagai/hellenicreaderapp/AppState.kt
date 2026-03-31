@@ -1,6 +1,8 @@
 package com.blagai.hellenicreaderapp
 
+import android.content.Context
 import com.blagai.hellenicreaderapp.utility.Converters.toOrderOfReading
+import com.blagai.hellenicreaderapp.utility.DataParser
 import com.blagai.hellenicreaderapp.utility.dataLastRead
 import com.blagai.hellenicreaderapp.utility.dataReadTextsNum
 import com.blagai.hellenicreaderapp.utility.getIntData
@@ -20,6 +22,10 @@ object AppState {
     var homeCurrentInOrder: String = "hohy1" // Replace with check for selected read order
     var lastRead: String? = null // for Dashboard continue button
     var readingOrder: OrderOfReading = OrderOfReading.DEFAULTREAD // Replace with check for selected read order
+
+    var litTrans: List<String> = emptyList()
+    var meaningTrans: List<String> = emptyList()
+    var grammarDetails: List<String> = emptyList()
 
     suspend fun loadData() {
         homeReadingOrder = if (getStringData(homeReadOrder) == "") {
@@ -47,6 +53,22 @@ object AppState {
         }
 
         readTextsNum = getIntData(dataReadTextsNum)
+    }
+
+    suspend fun loadFiles(context: Context) {
+        try {
+            context.assets.open("Data/meaning_translations.csv").use { inputStream ->
+                meaningTrans = DataParser.parseFile(inputStream)
+            }
+            context.assets.open("Data/lit_translations.csv").use { inputStream ->
+                litTrans = DataParser.parseFile(inputStream)
+            }
+            context.assets.open("Data/grammar_details.csv").use { inputStream ->
+                grammarDetails = DataParser.parseFile(inputStream)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     enum class OrderOfReading {

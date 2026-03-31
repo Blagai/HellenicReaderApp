@@ -2,25 +2,16 @@ package com.blagai.hellenicreaderapp.utility
 
 import java.io.InputStream
 
+@Suppress("RedundantSuspendModifier")
+
 object DataParser {
 
-    var litTranslations: List<String> = emptyList()
-    var meaningTranslations: List<String> = emptyList()
-    var grammarDetails: List<String> = emptyList()
-
-    fun loadLitTranslations(inputStream: InputStream) {
-        litTranslations = parseCsvToLines(inputStream)
+    suspend fun parseFile(inputStream : InputStream) : List<String> {
+        val res: List<String> = parseCsvToLines(inputStream)
+        return res
     }
 
-    fun loadMeaningTranslations(inputStream: InputStream) {
-        meaningTranslations = parseCsvToLines(inputStream)
-    }
-
-    fun loadGrammarDetails(inputStream: InputStream) {
-        grammarDetails = parseCsvToLines(inputStream)
-    }
-
-    fun parseCsvToLines(inputStream: InputStream): List<String> {
+    private suspend fun parseCsvToLines(inputStream: InputStream): List<String> {
         val lines = inputStream.bufferedReader().use { it.readLines() }.filter { it.isNotBlank() }
         return lines
     }

@@ -1,13 +1,15 @@
 package com.blagai.hellenicreaderapp.utility
 
+import com.blagai.hellenicreaderapp.AppState
+
 object GrammarDetailsMap {
     private var lastSource: List<String>? = null
     private var cachedMap: Map<String, List<String>> = emptyMap()
 
     val mappedGrammarDetails: Map<String, List<String>>
         get() {
-            if (lastSource !== DataParser.grammarDetails) {
-                lastSource = DataParser.grammarDetails
+            if (lastSource !== AppState.grammarDetails) {
+                lastSource = AppState.grammarDetails
                 cachedMap = lastSource!!.mapNotNull { line ->
                     val parts = line.split(";")
                     if (parts.size >= 2) {

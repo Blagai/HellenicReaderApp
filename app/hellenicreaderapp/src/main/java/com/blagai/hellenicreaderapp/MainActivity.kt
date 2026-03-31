@@ -9,7 +9,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blagai.hellenicreaderapp.databinding.ActivityMainBinding
-import com.blagai.hellenicreaderapp.utility.DataParser
 import com.blagai.hellenicreaderapp.utility.DataStoreManager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.runBlocking
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         DataStoreManager.dataStoreInit(this)
         runBlocking {
+            AppState.loadFiles(this@MainActivity)
             AppState.loadData()
             splashscreenVisible = false
         }
@@ -35,31 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Load translations from assets on startup
-        try {
-            assets.open("Data/lit_translations.csv").use { inputStream ->
-                DataParser.loadLitTranslations(inputStream)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        try {
-            assets.open("Data/meaning_translations.csv").use { inputStream ->
-                DataParser.loadMeaningTranslations(inputStream)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        try {
-            assets.open("Data/grammar_details.csv").use { inputStream ->
-                DataParser.loadGrammarDetails(inputStream)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
 
         val actionBar = supportActionBar
 

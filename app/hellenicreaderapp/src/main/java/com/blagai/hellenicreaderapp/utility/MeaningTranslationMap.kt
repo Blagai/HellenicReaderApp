@@ -1,13 +1,15 @@
 package com.blagai.hellenicreaderapp.utility
 
+import com.blagai.hellenicreaderapp.AppState
+
 object MeaningTranslationMap {
     private var lastSource: List<String>? = null
     private var cachedMap: Map<String, List<String>> = emptyMap()
 
     val mappedMeaningTranslations: Map<String, List<String>>
         get() {
-            if (lastSource !== DataParser.meaningTranslations) {
-                lastSource = DataParser.meaningTranslations
+            if (lastSource !== AppState.meaningTrans) {
+                lastSource = AppState.meaningTrans
                 cachedMap = lastSource!!.mapNotNull { line ->
                     val parts = line.split(";")
                     if (parts.size >= 2) {
